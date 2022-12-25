@@ -1,0 +1,3472 @@
+local L_1_ = "Beta 7R"
+local L_2_ = 6.5
+local L_3_ = "Rayfield"
+local L_4_ = L_3_ .. "/Configurations"
+local L_5_ = ".rfld"
+
+local L_6_ = {
+	Flags = {},
+	Theme = {
+		Default = {
+			TextFont = "Default", -- Default will use the various font faces used across Rayfield
+			TextColor = Color3.fromRGB(240, 240, 240),
+
+			Background = Color3.fromRGB(25, 25, 25),
+			Topbar = Color3.fromRGB(34, 34, 34),
+			Shadow = Color3.fromRGB(20, 20, 20),
+
+			NotificationBackground = Color3.fromRGB(20, 20, 20),
+			NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
+
+			TabBackground = Color3.fromRGB(80, 80, 80),
+			TabStroke = Color3.fromRGB(85, 85, 85),
+			TabBackgroundSelected = Color3.fromRGB(210, 210, 210),
+			TabTextColor = Color3.fromRGB(240, 240, 240),
+			SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
+
+			ElementBackground = Color3.fromRGB(35, 35, 35),
+			ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
+			SecondaryElementBackground = Color3.fromRGB(25, 25, 25), -- For labels and paragraphs
+			ElementStroke = Color3.fromRGB(50, 50, 50),
+			SecondaryElementStroke = Color3.fromRGB(40, 40, 40), -- For labels and paragraphs
+
+			SliderBackground = Color3.fromRGB(43, 105, 159),
+			SliderProgress = Color3.fromRGB(43, 105, 159),
+			SliderStroke = Color3.fromRGB(48, 119, 177),
+
+			ToggleBackground = Color3.fromRGB(30, 30, 30),
+			ToggleEnabled = Color3.fromRGB(0, 146, 214),
+			ToggleDisabled = Color3.fromRGB(100, 100, 100),
+			ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
+			ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
+			ToggleEnabledOuterStroke = Color3.fromRGB(100, 100, 100),
+			ToggleDisabledOuterStroke = Color3.fromRGB(65, 65, 65),
+
+			InputBackground = Color3.fromRGB(30, 30, 30),
+			InputStroke = Color3.fromRGB(65, 65, 65),
+			PlaceholderColor = Color3.fromRGB(178, 178, 178)
+		},
+		Light = {
+			TextFont = "Gotham",  -- Default will use the various font faces used across Rayfield
+			TextColor = Color3.fromRGB(50, 50, 50), -- i need to make all text 240, 240, 240 and base gray on transparency not color to do this
+
+			Background = Color3.fromRGB(255, 255, 255),
+			Topbar = Color3.fromRGB(217, 217, 217),
+			Shadow = Color3.fromRGB(223, 223, 223),
+
+			NotificationBackground = Color3.fromRGB(20, 20, 20),
+			NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
+
+			TabBackground = Color3.fromRGB(220, 220, 220),
+			TabStroke = Color3.fromRGB(112, 112, 112),
+			TabBackgroundSelected = Color3.fromRGB(0, 142, 208),
+			TabTextColor = Color3.fromRGB(240, 240, 240),
+			SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
+
+			ElementBackground = Color3.fromRGB(198, 198, 198),
+			ElementBackgroundHover = Color3.fromRGB(230, 230, 230),
+			SecondaryElementBackground = Color3.fromRGB(136, 136, 136), -- For labels and paragraphs
+			ElementStroke = Color3.fromRGB(180, 199, 97),
+			SecondaryElementStroke = Color3.fromRGB(40, 40, 40),  --For labels and paragraphs
+
+			SliderBackground = Color3.fromRGB(31, 159, 71),
+			SliderProgress = Color3.fromRGB(31, 159, 71),
+			SliderStroke = Color3.fromRGB(42, 216, 94),
+
+			ToggleBackground = Color3.fromRGB(170, 203, 60),
+			ToggleEnabled = Color3.fromRGB(32, 214, 29),
+			ToggleDisabled = Color3.fromRGB(100, 22, 23),
+			ToggleEnabledStroke = Color3.fromRGB(17, 255, 0),
+			ToggleDisabledStroke = Color3.fromRGB(65, 8, 8),
+			ToggleEnabledOuterStroke = Color3.fromRGB(0, 170, 0),
+			ToggleDisabledOuterStroke = Color3.fromRGB(170, 0, 0),
+
+			InputBackground = Color3.fromRGB(31, 159, 71),
+			InputStroke = Color3.fromRGB(19, 65, 31),
+			PlaceholderColor = Color3.fromRGB(178, 178, 178)
+		}
+	}
+}
+
+
+
+-- Services
+
+local L_7_ = game:GetService("UserInputService")
+local L_8_ = game:GetService("TweenService")
+local L_9_ = game:GetService("HttpService")
+local L_10_ = game:GetService("RunService")
+local L_11_ = game:GetService("Players")
+local L_12_ = game:GetService("CoreGui")
+
+-- Interface Management
+local L_13_ = game:GetObjects("rbxassetid://11637506633")[1]
+
+--studio
+--function gethui() return Rayfield end local http_request = nil local syn = {protect_gui = false,request = false,}local http = nil function writefile(tt,t,ttt)end function isfolder(t)end function makefolder(t)end function isfile(r)end function readfile(t)end
+
+if gethui then
+	L_13_.Parent = gethui()
+elseif syn.protect_gui then 
+	syn.protect_gui(L_13_)
+	L_13_.Parent = L_12_
+elseif L_12_:FindFirstChild("RobloxGui") then
+	L_13_.Parent = L_12_:FindFirstChild("RobloxGui")
+else
+	L_13_.Parent = L_12_
+end
+
+if gethui then
+	for L_39_forvar0, L_40_forvar1 in ipairs(gethui():GetChildren()) do
+		if L_40_forvar1.Name == L_13_.Name and L_40_forvar1 ~= L_13_ then
+			L_40_forvar1.Enabled = false
+			L_40_forvar1.Name = "Rayfield-Old"
+		end
+	end
+else
+	for L_41_forvar0, L_42_forvar1 in ipairs(L_12_:GetChildren()) do
+		if L_42_forvar1.Name == L_13_.Name and L_42_forvar1 ~= L_13_ then
+			L_42_forvar1.Enabled = false
+			L_42_forvar1.Name = "Rayfield-Old"
+		end
+	end
+end
+
+ --Object Variables
+
+local L_14_ = workspace.CurrentCamera
+local L_15_ = L_13_.Main
+local L_16_ = L_15_.Topbar
+local L_17_ = L_15_.Elements
+local L_18_ = L_15_.LoadingFrame
+local L_19_ = L_15_.TabList
+local L_20_ = L_15_.Searchbar
+local L_21_ = L_20_.CanvasGroup.Filler
+local L_22_ = L_15_.Prompt
+
+L_13_.DisplayOrder = 100
+L_18_.Version.Text = L_1_
+
+
+ --Variables
+
+local L_23_ = (syn and syn.request) or (http and http.request) or http_request
+local L_24_ = nil
+local L_25_ = false
+local L_26_ = false
+local L_27_ = false
+local L_28_ = false
+local L_29_ = false
+local L_30_ = true
+local L_31_ = L_13_.Notifications
+
+local L_32_ = L_6_.Theme.Default
+
+function ChangeTheme(L_43_arg0)
+	L_32_ = L_6_.Theme[L_43_arg0]
+	for L_44_forvar0, L_45_forvar1 in ipairs(L_13_:GetDescendants()) do
+		if L_45_forvar1.ClassName == "TextLabel" or L_45_forvar1.ClassName == "TextBox" or L_45_forvar1.ClassName == "TextButton" then
+			if L_32_.TextFont ~= "Default" then 
+				L_45_forvar1.TextColor3 = L_32_.TextColor
+				L_45_forvar1.Font = L_32_.TextFont
+			end
+		end
+	end
+
+	L_13_.Main.BackgroundColor3 = L_32_.Background
+	L_13_.Main.Topbar.BackgroundColor3 = L_32_.Topbar
+	L_13_.Main.Topbar.CornerRepair.BackgroundColor3 = L_32_.Topbar
+	L_13_.Main.Shadow.Image.ImageColor3 = L_32_.Shadow
+
+	L_13_.Main.Topbar.ChangeSize.ImageColor3 = L_32_.TextColor
+	L_13_.Main.Topbar.Hide.ImageColor3 = L_32_.TextColor
+	L_13_.Main.Topbar.Theme.ImageColor3 = L_32_.TextColor
+
+	for L_46_forvar0, L_47_forvar1 in ipairs(L_17_:GetChildren()) do
+		for L_48_forvar0, L_49_forvar1 in ipairs(L_47_forvar1:GetChildren()) do
+			if L_49_forvar1.ClassName == "Frame" and L_49_forvar1.Name ~= "Placeholder" and L_49_forvar1.Name ~= "SectionSpacing" and L_49_forvar1.Name ~= "SectionTitle" then
+				L_49_forvar1.BackgroundColor3 = L_32_.ElementBackground
+				L_49_forvar1.UIStroke.Color = L_32_.ElementStroke
+			end
+		end
+	end
+
+end
+function ColorDragger()
+	
+end
+local function L_33_func(L_50_arg0, L_51_arg1)
+	pcall(function()
+		local L_52_, L_53_, L_54_, L_55_ = false, false, false, false
+		L_50_arg0.InputBegan:Connect(function(L_56_arg0)
+			if L_56_arg0.UserInputType == Enum.UserInputType.MouseButton1 then
+				L_52_ = true
+				L_54_ = L_56_arg0.Position
+				L_55_ = L_51_arg1.Position
+
+				L_56_arg0.Changed:Connect(function()
+					if L_56_arg0.UserInputState == Enum.UserInputState.End then
+						L_52_ = false
+					end
+				end)
+			end
+		end)
+		L_50_arg0.InputChanged:Connect(function(L_57_arg0)
+			if L_57_arg0.UserInputType == Enum.UserInputType.MouseMovement then
+				L_53_ = L_57_arg0
+			end
+		end)
+		L_7_.InputChanged:Connect(function(L_58_arg0)
+			if L_58_arg0 == L_53_ and L_52_ then
+				local L_59_ = L_58_arg0.Position - L_54_
+				L_8_:Create(L_51_arg1, TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+					Position = UDim2.new(L_55_.X.Scale, L_55_.X.Offset + L_59_.X, L_55_.Y.Scale, L_55_.Y.Offset + L_59_.Y)
+				}):Play()
+			end
+		end)
+	end)
+end   
+
+local function L_34_func(L_60_arg0)
+	return {
+		R = L_60_arg0.R * 255,
+		G = L_60_arg0.G * 255,
+		B = L_60_arg0.B * 255
+	}
+end    
+
+local function L_35_func(L_61_arg0)
+	return Color3.fromRGB(L_61_arg0.R, L_61_arg0.G, L_61_arg0.B)
+end
+
+local function L_36_func(L_62_arg0)
+	local L_63_ = L_9_:JSONDecode(L_62_arg0)
+	table.foreach(L_63_, function(L_64_arg0, L_65_arg1)
+		if L_6_.Flags[L_64_arg0] then
+			spawn(function() 
+				if L_6_.Flags[L_64_arg0].Type == "Colorpicker" then
+					L_6_.Flags[L_64_arg0]:Set(L_35_func(L_65_arg1))
+				else
+					if L_6_.Flags[L_64_arg0].CurrentValue or L_6_.Flags[L_64_arg0].CurrentKeybind or L_6_.Flags[L_64_arg0].CurrentOption ~= L_65_arg1 then
+						L_6_.Flags[L_64_arg0]:Set(L_65_arg1)
+					end
+				end    
+			end)
+		else
+			L_6_:Notify({
+				Title = "Flag Error",
+				Content = "Rayfield was unable to find '" .. L_64_arg0 .. "'' in the current script"
+			})
+		end
+	end)
+end
+
+local function L_37_func()
+	if not L_25_ then
+		return
+	end
+	local L_66_ = {}
+	for L_67_forvar0, L_68_forvar1 in pairs(L_6_.Flags) do
+		if L_68_forvar1.Type == "Colorpicker" then
+			L_66_[L_67_forvar0] = L_34_func(L_68_forvar1.CurrentValue)
+		else
+			L_66_[L_67_forvar0] = L_68_forvar1.CurrentValue or L_68_forvar1.CurrentKeybind or L_68_forvar1.CurrentOption
+		end
+	end	
+	writefile(L_4_ .. "/" .. L_24_ .. L_5_, tostring(L_9_:JSONEncode(L_66_)))
+end
+
+local L_38_ = (function()  --Open sourced neon module
+	local L_69_ = {}
+
+	do
+		local function L_75_func(L_77_arg0)
+			return L_77_arg0 == L_77_arg0
+		end
+		local L_76_ = L_75_func(L_14_:ScreenPointToRay(0, 0).Origin.x)
+		while not L_76_ do
+			L_10_.RenderStepped:wait()
+			L_76_ = L_75_func(L_14_:ScreenPointToRay(0, 0).Origin.x)
+		end
+	end
+	local L_70_ = L_14_
+	if false == nil then
+		L_70_ = L_14_
+	else
+		if true then
+			L_70_ = L_14_
+		else 
+			L_70_ = nil
+		end
+	end
+
+
+	local L_71_ = {}
+	local L_72_ = Instance.new('Folder', L_70_)
+	L_72_.Name = 'neon'
+
+
+	local L_73_;
+	do
+		local L_78_ = 0
+		function L_73_()
+			L_78_ = L_78_ + 1
+			return 'neon::' .. tostring(L_78_)
+		end
+	end
+
+	local L_74_;
+	do
+		local L_79_, L_80_, L_81_, L_82_ = math.acos, math.max, math.pi, math.sqrt
+		local L_83_ = 0.2
+
+		local function L_84_func(L_85_arg0, L_86_arg1, L_87_arg2, L_88_arg3, L_89_arg4)
+			local L_90_ = (L_85_arg0 - L_86_arg1).magnitude
+			local L_91_ = (L_86_arg1 - L_87_arg2).magnitude
+			local L_92_ = (L_87_arg2 - L_85_arg0).magnitude
+			local L_93_ = L_80_(L_90_, L_91_, L_92_)
+			local L_94_, L_95_, L_96_
+			if L_90_ == L_93_ then
+				L_94_, L_95_, L_96_ = L_85_arg0, L_86_arg1, L_87_arg2
+			elseif L_91_ == L_93_ then
+				L_94_, L_95_, L_96_ = L_86_arg1, L_87_arg2, L_85_arg0
+			elseif L_92_ == L_93_ then
+				L_94_, L_95_, L_96_ = L_87_arg2, L_85_arg0, L_86_arg1
+			end
+
+			local L_97_ = ((L_95_ - L_94_).x * (L_96_ - L_94_).x + (L_95_ - L_94_).y * (L_96_ - L_94_).y + (L_95_ - L_94_).z * (L_96_ - L_94_).z) / (L_94_ - L_95_).magnitude
+			local L_98_ = L_82_((L_96_ - L_94_).magnitude ^ 2 - L_97_ * L_97_)
+			local L_99_ = (L_94_ - L_95_).magnitude - L_97_
+
+			local L_100_ = CFrame.new(L_95_, L_94_)
+			local L_101_ = CFrame.Angles(L_81_ / 2, 0, 0)
+
+			local L_102_ = L_100_
+
+			local L_103_ = (L_102_ * L_101_).lookVector
+			local L_104_ = L_94_ + CFrame.new(L_94_, L_95_).LookVector * L_97_
+			local L_105_ = CFrame.new(L_104_, L_96_).LookVector
+			local L_106_ = L_103_.x * L_105_.x + L_103_.y * L_105_.y + L_103_.z * L_105_.z
+
+			local L_107_ = CFrame.Angles(0, 0, L_79_(L_106_))
+
+			L_102_ = L_102_ * L_107_
+			if ((L_102_ * L_101_).lookVector - L_105_).magnitude > 0.01 then
+				L_102_ = L_102_ * CFrame.Angles(0, 0, -2 * L_79_(L_106_))
+			end
+			L_102_ = L_102_ * CFrame.new(0, L_98_ / 2, - (L_99_ + L_97_ / 2))
+
+			local L_108_ = L_100_ * L_107_ * CFrame.Angles(0, L_81_, 0)
+			if ((L_108_ * L_101_).lookVector - L_105_).magnitude > 0.01 then
+				L_108_ = L_108_ * CFrame.Angles(0, 0, 2 * L_79_(L_106_))
+			end
+			L_108_ = L_108_ * CFrame.new(0, L_98_ / 2, L_99_ / 2)
+
+			if not L_88_arg3 then
+				L_88_arg3 = Instance.new('Part')
+				L_88_arg3.FormFactor = 'Custom'
+				L_88_arg3.TopSurface = 0
+				L_88_arg3.BottomSurface = 0
+				L_88_arg3.Anchored = true
+				L_88_arg3.CanCollide = false
+				L_88_arg3.Material = 'Glass'
+				L_88_arg3.Size = Vector3.new(L_83_, L_83_, L_83_)
+				local L_109_ = Instance.new('SpecialMesh', L_88_arg3)
+				L_109_.MeshType = 2
+				L_109_.Name = 'WedgeMesh'
+			end
+			L_88_arg3.WedgeMesh.Scale = Vector3.new(0, L_98_ / L_83_, L_97_ / L_83_)
+			L_88_arg3.CFrame = L_102_
+
+			if not L_89_arg4 then
+				L_89_arg4 = L_88_arg3:clone()
+			end
+			L_89_arg4.WedgeMesh.Scale = Vector3.new(0, L_98_ / L_83_, L_99_ / L_83_)
+			L_89_arg4.CFrame = L_108_
+
+			return L_88_arg3, L_89_arg4
+		end
+
+		function L_74_(L_110_arg0, L_111_arg1, L_112_arg2, L_113_arg3, L_114_arg4)
+			L_114_arg4[1], L_114_arg4[2] = L_84_func(L_110_arg0, L_111_arg1, L_112_arg2, L_114_arg4[1], L_114_arg4[2])
+			L_114_arg4[3], L_114_arg4[4] = L_84_func(L_112_arg2, L_111_arg1, L_113_arg3, L_114_arg4[3], L_114_arg4[4])
+		end
+	end
+
+	function L_69_:BindFrame(L_115_arg0, L_116_arg1)
+		if L_70_ == nil then
+			return
+		end
+		if L_71_[L_115_arg0] then
+			return L_71_[L_115_arg0].parts
+		end
+
+		local L_117_ = L_73_()
+		local L_118_ = {}
+		local L_119_ = Instance.new('Folder', L_72_)
+		L_119_.Name = L_115_arg0.Name
+
+		local L_120_ = {}
+		do
+			local function L_122_func(L_123_arg0)
+				if L_123_arg0:IsA'GuiObject' then
+					L_120_[# L_120_ + 1] = L_123_arg0
+					L_122_func(L_123_arg0.Parent)
+				end
+			end
+			L_122_func(L_115_arg0)
+		end
+
+		local function L_121_func(L_124_arg0)
+			local L_125_ = 1 - 0.05 * L_115_arg0.ZIndex
+			local L_126_, L_127_ = L_115_arg0.AbsolutePosition, L_115_arg0.AbsolutePosition + L_115_arg0.AbsoluteSize
+			local L_128_, L_129_ = Vector2.new(L_127_.x, L_126_.y), Vector2.new(L_126_.x, L_127_.y)
+			do
+				local L_130_ = 0;
+				for L_131_forvar0, L_132_forvar1 in ipairs(L_120_) do
+					L_130_ = L_130_ + L_132_forvar1.Rotation
+				end
+				if L_130_ ~= 0 and L_130_ % 180 ~= 0 then
+					local L_133_ = L_126_:lerp(L_127_, 0.5)
+					local L_134_, L_135_ = math.sin(math.rad(L_130_)), math.cos(math.rad(L_130_))
+					local L_136_ = L_126_
+					L_126_ = Vector2.new(L_135_ * (L_126_.x - L_133_.x) - L_134_ * (L_126_.y - L_133_.y), L_134_ * (L_126_.x - L_133_.x) + L_135_ * (L_126_.y - L_133_.y)) + L_133_
+					L_128_ = Vector2.new(L_135_ * (L_128_.x - L_133_.x) - L_134_ * (L_128_.y - L_133_.y), L_134_ * (L_128_.x - L_133_.x) + L_135_ * (L_128_.y - L_133_.y)) + L_133_
+					L_129_ = Vector2.new(L_135_ * (L_129_.x - L_133_.x) - L_134_ * (L_129_.y - L_133_.y), L_134_ * (L_129_.x - L_133_.x) + L_135_ * (L_129_.y - L_133_.y)) + L_133_
+					L_127_ = Vector2.new(L_135_ * (L_127_.x - L_133_.x) - L_134_ * (L_127_.y - L_133_.y), L_134_ * (L_127_.x - L_133_.x) + L_135_ * (L_127_.y - L_133_.y)) + L_133_
+				end
+			end
+			L_74_(
+				L_14_:ScreenPointToRay(L_126_.x, L_126_.y, L_125_).Origin, L_14_:ScreenPointToRay(L_128_.x, L_128_.y, L_125_).Origin, L_14_:ScreenPointToRay(L_129_.x, L_129_.y, L_125_).Origin, L_14_:ScreenPointToRay(L_127_.x, L_127_.y, L_125_).Origin, L_118_)
+			if L_124_arg0 then
+				for L_137_forvar0, L_138_forvar1 in pairs(L_118_) do
+					L_138_forvar1.Parent = L_119_
+				end
+				for L_139_forvar0, L_140_forvar1 in pairs(L_116_arg1) do
+					for L_141_forvar0, L_142_forvar1 in pairs(L_118_) do
+						L_142_forvar1[L_139_forvar0] = L_140_forvar1
+					end
+				end
+			end
+		end
+
+		L_121_func(true)
+		L_10_:BindToRenderStep(L_117_, 2000, L_121_func)
+
+		L_71_[L_115_arg0] = {
+			uid = L_117_;
+			parts = L_118_;
+		}
+		return L_71_[L_115_arg0].parts
+	end
+
+	function L_69_:Modify(L_143_arg0, L_144_arg1)
+		local L_145_ = L_69_:GetBoundParts(L_143_arg0)
+		if L_145_ then
+			for L_146_forvar0, L_147_forvar1 in pairs(L_144_arg1) do
+				for L_148_forvar0, L_149_forvar1 in pairs(L_145_) do
+					L_149_forvar1[L_146_forvar0] = L_147_forvar1
+				end
+			end
+		end
+	end
+
+	function L_69_:UnbindFrame(L_150_arg0)
+		if L_70_ == nil then
+			return
+		end
+		local L_151_ = L_71_[L_150_arg0]
+		if L_151_ then
+			L_10_:UnbindFromRenderStep(L_151_.uid)
+			for L_152_forvar0, L_153_forvar1 in pairs(L_151_.parts) do
+				L_153_forvar1:Destroy()
+			end
+			L_71_[L_150_arg0] = nil
+		end
+	end
+
+	function L_69_:HasBinding(L_154_arg0)
+		return L_71_[L_154_arg0] ~= nil
+	end
+
+	function L_69_:GetBoundParts(L_155_arg0)
+		return L_71_[L_155_arg0] and L_71_[L_155_arg0].parts
+	end
+
+
+	return L_69_
+
+		
+end)()
+function ClosePrompt()
+	local L_156_ = L_22_.Prompt
+	L_29_ = false
+	L_8_:Create(L_22_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_156_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1,
+		Size = UDim2.new(0, 340, 0, 140)
+	}):Play()
+	L_8_:Create(L_156_.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		Transparency = 1
+	}):Play()
+	L_8_:Create(L_156_.Title, TweenInfo.new(0.45, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	L_8_:Create(L_156_.Content, TweenInfo.new(0.45, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	L_8_:Create(L_156_.Sub, TweenInfo.new(0.45, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	for L_157_forvar0, L_158_forvar1 in pairs(L_156_.Buttons:GetChildren()) do
+		if L_158_forvar1.Name ~= 'Template' and L_158_forvar1:IsA("Frame") then
+			L_8_:Create(L_158_forvar1.UIStroke, TweenInfo.new(0.2, Enum.EasingStyle.Quint), {
+				Transparency = 1
+			}):Play()
+			L_8_:Create(L_158_forvar1.TextLabel, TweenInfo.new(0.2, Enum.EasingStyle.Quint), {
+				TextTransparency = 1
+			}):Play()
+			delay(.2, function()
+				L_158_forvar1:Destroy()
+			end)
+		end
+	end
+	wait(.5)
+	L_22_.Visible = false
+end
+function L_6_:Notify(L_159_arg0)
+	spawn(function()
+		local L_160_ = true
+		local L_161_ = L_31_.Template:Clone()
+		L_161_.Parent = L_31_
+		L_161_.Name = L_159_arg0.Title or "Unknown Title"
+		L_161_.Visible = true
+
+		local L_162_ = nil
+		if true then
+			L_162_ = Instance.new("DepthOfFieldEffect", game:GetService("Lighting"))
+			L_162_.Enabled = true
+			L_162_.FarIntensity = 0
+			L_162_.FocusDistance = 51.6
+			L_162_.InFocusRadius = 50
+			L_162_.NearIntensity = 1
+			game:GetService("Debris"):AddItem(script, 0)
+		end
+
+		L_161_.Actions.Template.Visible = false
+
+		if L_159_arg0.Actions then
+			for L_163_forvar0, L_164_forvar1 in pairs(L_159_arg0.Actions) do
+				L_160_ = false
+				local L_165_ = L_161_.Actions.Template:Clone()
+				L_165_.BackgroundColor3 = L_32_.NotificationActionsBackground
+				if L_32_ ~= L_6_.Theme.Default then
+					L_165_.TextColor3 = L_32_.TextColor
+				end
+				L_165_.Name = L_164_forvar1.Name
+				L_165_.Visible = true
+				L_165_.Parent = L_161_.Actions
+				L_165_.Text = L_164_forvar1.Name
+				L_165_.BackgroundTransparency = 1
+				L_165_.TextTransparency = 1
+				L_165_.Size = UDim2.new(0, L_165_.TextBounds.X + 27, 0, 36)
+
+				L_165_.MouseButton1Click:Connect(function()
+					local L_166_, L_167_ = pcall(L_164_forvar1.Callback)
+					if not L_166_ then
+						print("Rayfield | Action: " .. L_164_forvar1.Name .. " Callback Error " .. tostring(L_167_))
+					end
+					L_160_ = true
+				end)
+			end
+		end
+		L_161_.BackgroundColor3 = L_32_.Background
+		L_161_.Title.Text = L_159_arg0.Title or "Unknown"
+		L_161_.Title.TextTransparency = 1
+		L_161_.Title.TextColor3 = L_32_.TextColor
+		L_161_.Description.Text = L_159_arg0.Content or "Unknown"
+		L_161_.Description.TextTransparency = 1
+		L_161_.Description.TextColor3 = L_32_.TextColor
+		L_161_.Icon.ImageColor3 = L_32_.TextColor
+		if L_159_arg0.Image then
+			L_161_.Icon.Image = "rbxassetid://" .. tostring(L_159_arg0.Image) 
+		else
+			L_161_.Icon.Image = "rbxassetid://3944680095"
+		end
+
+		L_161_.Icon.ImageTransparency = 1
+
+		L_161_.Parent = L_31_
+		L_161_.Size = UDim2.new(0, 260, 0, 80)
+		L_161_.BackgroundTransparency = 1
+
+		L_8_:Create(L_161_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+			Size = UDim2.new(0, 295, 0, 91)
+		}):Play()
+		L_8_:Create(L_161_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+			BackgroundTransparency = 0.1
+		}):Play()
+		L_161_:TweenPosition(UDim2.new(0.5, 0, 0.915, 0), 'Out', 'Quint', 0.8, true)
+
+		wait(0.3)
+		L_8_:Create(L_161_.Icon, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			ImageTransparency = 0
+		}):Play()
+		L_8_:Create(L_161_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+			TextTransparency = 0
+		}):Play()
+		L_8_:Create(L_161_.Description, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			TextTransparency = 0.2
+		}):Play()
+		wait(0.2)
+
+
+
+		-- Requires Graphics Level 8-10
+		if false == nil then
+			L_8_:Create(L_161_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0.4
+			}):Play()
+		else
+			if true then
+				L_8_:Create(L_161_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 0.4
+				}):Play()
+			else 
+				L_8_:Create(L_161_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 0
+				}):Play()
+			end
+		end
+
+		if L_13_.Name == "Rayfield" then
+			L_38_:BindFrame(L_161_.BlurModule, {
+				Transparency = 0.98;
+				BrickColor = BrickColor.new("Institutional white");
+			})
+		end
+
+		if not L_159_arg0.Actions then
+			wait(L_159_arg0.Duration or L_2_ - 0.5)
+		else
+			wait(0.8)
+			L_8_:Create(L_161_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Size = UDim2.new(0, 295, 0, 132)
+			}):Play()
+			wait(0.3)
+			for L_168_forvar0, L_169_forvar1 in ipairs(L_161_.Actions:GetChildren()) do
+				if L_169_forvar1.ClassName == "TextButton" and L_169_forvar1.Name ~= "Template" then
+					L_8_:Create(L_169_forvar1, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						BackgroundTransparency = 0.2
+					}):Play()
+					L_8_:Create(L_169_forvar1, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						TextTransparency = 0
+					}):Play()
+					wait(0.05)
+				end
+			end
+		end
+
+		repeat
+			wait(0.001)
+		until L_160_
+
+		for L_170_forvar0, L_171_forvar1 in ipairs(L_161_.Actions:GetChildren()) do
+			if L_171_forvar1.ClassName == "TextButton" and L_171_forvar1.Name ~= "Template" then
+				L_8_:Create(L_171_forvar1, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 1
+				}):Play()
+				L_8_:Create(L_171_forvar1, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+			end
+		end
+
+		L_8_:Create(L_161_.Title, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			Position = UDim2.new(0.47, 0, 0.234, 0)
+		}):Play()
+		L_8_:Create(L_161_.Description, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {
+			Position = UDim2.new(0.528, 0, 0.637, 0)
+		}):Play()
+		L_8_:Create(L_161_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			Size = UDim2.new(0, 280, 0, 83)
+		}):Play()
+		L_8_:Create(L_161_.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+			ImageTransparency = 1
+		}):Play()
+		L_8_:Create(L_161_, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {
+			BackgroundTransparency = 0.6
+		}):Play()
+
+		wait(0.3)
+		L_8_:Create(L_161_.Title, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			TextTransparency = 0.4
+		}):Play()
+		L_8_:Create(L_161_.Description, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			TextTransparency = 0.5
+		}):Play()
+		wait(0.4)
+		L_8_:Create(L_161_, TweenInfo.new(0.9, Enum.EasingStyle.Quint), {
+			Size = UDim2.new(0, 260, 0, 0)
+		}):Play()
+		L_8_:Create(L_161_, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {
+			BackgroundTransparency = 1
+		}):Play()
+		L_8_:Create(L_161_.Title, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			TextTransparency = 1
+		}):Play()
+		L_8_:Create(L_161_.Description, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+			TextTransparency = 1
+		}):Play()
+		wait(0.2)
+		if true then
+			L_38_:UnbindFrame(L_161_.BlurModule)
+			L_162_:Destroy()
+		end
+		wait(0.9)
+		L_161_:Destroy()
+	end)
+end
+
+function Hide()
+	L_28_ = true
+	L_6_:Notify({
+		Title = "Interface Hidden",
+		Content = "The interface has been hidden, you can unhide the interface by tapping RightShift",
+		Duration = 7
+	})
+	L_8_:Create(L_15_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 470, 0, 400)
+	}):Play()
+	L_8_:Create(L_15_.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 470, 0, 45)
+	}):Play()
+	L_8_:Create(L_15_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_15_.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_15_.Topbar.Divider, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_15_.Topbar.CornerRepair, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_15_.Topbar.Title, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	L_8_:Create(L_15_.Shadow.Image, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		ImageTransparency = 1
+	}):Play()
+	L_8_:Create(L_16_.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Transparency = 1
+	}):Play()
+	for L_172_forvar0, L_173_forvar1 in ipairs(L_16_:GetChildren()) do
+		if L_173_forvar1.ClassName == "ImageButton" then
+			L_8_:Create(L_173_forvar1, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				ImageTransparency = 1
+			}):Play()
+		end
+	end
+	for L_174_forvar0, L_175_forvar1 in ipairs(L_19_:GetChildren()) do
+		if L_175_forvar1.ClassName == "Frame" and L_175_forvar1.Name ~= "Placeholder" then
+			L_8_:Create(L_175_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 1
+			}):Play()
+			L_8_:Create(L_175_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				TextTransparency = 1
+			}):Play()
+			L_8_:Create(L_175_forvar1.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 1
+			}):Play()
+			L_8_:Create(L_175_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 1
+			}):Play()
+			L_8_:Create(L_175_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				Transparency = 1
+			}):Play()
+		end
+	end
+	for L_176_forvar0, L_177_forvar1 in ipairs(L_17_:GetChildren()) do
+		if L_177_forvar1.Name ~= "Template" and L_177_forvar1.ClassName == "ScrollingFrame" and L_177_forvar1.Name ~= "Placeholder" then
+			for L_178_forvar0, L_179_forvar1 in ipairs(L_177_forvar1:GetChildren()) do
+				if L_179_forvar1.ClassName == "Frame" then
+					if L_179_forvar1.Name ~= "SectionSpacing" and L_179_forvar1.Name ~= "Placeholder" then
+						if L_179_forvar1.Name == "SectionTitle" then
+							L_8_:Create(L_179_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 1
+							}):Play()
+						else
+							L_8_:Create(L_179_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								BackgroundTransparency = 1
+							}):Play()
+							L_8_:Create(L_179_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								Transparency = 1
+							}):Play()
+							L_8_:Create(L_179_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 1
+							}):Play()
+						end
+						for L_180_forvar0, L_181_forvar1 in ipairs(L_179_forvar1:GetChildren()) do
+							if L_181_forvar1.ClassName == "Frame" or L_181_forvar1.ClassName == "TextLabel" or L_181_forvar1.ClassName == "TextBox" or L_181_forvar1.ClassName == "ImageButton" or L_181_forvar1.ClassName == "ImageLabel" then
+								L_181_forvar1.Visible = false
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	wait(0.5)
+	L_15_.Visible = false
+	L_28_ = false
+end
+
+function Unhide()
+	L_28_ = true
+	L_15_.Position = UDim2.new(0.5, 0, 0.5, 0)
+	L_15_.Visible = true
+	L_8_:Create(L_15_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 500, 0, 475)
+	}):Play()
+	L_8_:Create(L_15_.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 500, 0, 45)
+	}):Play()
+	L_8_:Create(L_15_.Shadow.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.4
+	}):Play()
+	L_8_:Create(L_15_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_15_.Topbar, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_15_.Topbar.Divider, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_15_.Topbar.CornerRepair, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_15_.Topbar.Title, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		TextTransparency = 0
+	}):Play()
+	if L_26_ then
+		spawn(Maximise)
+	end
+	for L_182_forvar0, L_183_forvar1 in ipairs(L_16_:GetChildren()) do
+		if L_183_forvar1.ClassName == "ImageButton" then
+			L_8_:Create(L_183_forvar1, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.8
+			}):Play()
+		end
+	end
+	for L_184_forvar0, L_185_forvar1 in ipairs(L_19_:GetChildren()) do
+		if L_185_forvar1.ClassName == "Frame" and L_185_forvar1.Name ~= "Placeholder" then
+			if tostring(L_17_.UIPageLayout.CurrentPage) == L_185_forvar1.Title.Text then
+				L_8_:Create(L_185_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 0
+				}):Play()
+				L_8_:Create(L_185_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					TextTransparency = 0
+				}):Play()
+				L_8_:Create(L_185_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0.9
+				}):Play()
+				L_8_:Create(L_185_forvar1.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0
+				}):Play()
+				L_8_:Create(L_185_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					Transparency = 1
+				}):Play()
+			else
+				L_8_:Create(L_185_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 0.7
+				}):Play()
+				L_8_:Create(L_185_forvar1.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0.2
+				}):Play()
+				L_8_:Create(L_185_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0.7
+				}):Play()
+				L_8_:Create(L_185_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					TextTransparency = 0.2
+				}):Play()
+				L_8_:Create(L_185_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					Transparency = 0
+				}):Play()
+			end
+
+		end
+	end
+	for L_186_forvar0, L_187_forvar1 in ipairs(L_17_:GetChildren()) do
+		if L_187_forvar1.Name ~= "Template" and L_187_forvar1.ClassName == "ScrollingFrame" and L_187_forvar1.Name ~= "Placeholder" then
+			for L_188_forvar0, L_189_forvar1 in ipairs(L_187_forvar1:GetChildren()) do
+				if L_189_forvar1.ClassName == "Frame" then
+					if L_189_forvar1.Name ~= "SectionSpacing" and L_189_forvar1.Name ~= "Placeholder" then
+						if L_189_forvar1.Name == "SectionTitle" then
+							L_8_:Create(L_189_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 0
+							}):Play()
+						else
+							L_8_:Create(L_189_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								BackgroundTransparency = 0
+							}):Play()
+							L_8_:Create(L_189_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								Transparency = 0
+							}):Play()
+							L_8_:Create(L_189_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 0
+							}):Play()
+						end
+						for L_190_forvar0, L_191_forvar1 in ipairs(L_189_forvar1:GetChildren()) do
+							if L_191_forvar1.Name ~= 'Description' and (L_191_forvar1.ClassName == "Frame" or L_191_forvar1.ClassName == "TextLabel" or L_191_forvar1.ClassName == "TextBox" or L_191_forvar1.ClassName == "ImageButton" or L_191_forvar1.ClassName == "ImageLabel") then
+								L_191_forvar1.Visible = true
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	wait(0.5)
+	L_26_ = false
+	L_28_ = false
+end
+function CloseSearch()
+	L_28_ = true
+	L_8_:Create(L_20_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1,
+		Size = UDim2.new(0, 460, 0, 35)
+	}):Play()
+	L_8_:Create(L_20_.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		ImageTransparency = 1
+	}):Play()
+	L_8_:Create(L_20_.Clear, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		ImageTransparency = 1
+	}):Play()
+	L_8_:Create(L_20_.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		Transparency = 1
+	}):Play()
+	L_8_:Create(L_20_.Filter, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		ImageTransparency = 1
+	}):Play()
+	L_8_:Create(L_20_.Input, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	delay(.3, function()
+		L_20_.Input.Visible = false
+	end)
+	wait(0.5)
+	L_20_.Visible = false
+	L_28_ = false
+end
+
+function OpenSearch()
+	L_28_ = true
+	L_20_.Visible = true
+	L_20_.Input.Visible = true
+	L_8_:Create(L_20_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0,
+		Size = UDim2.new(0, 480, 0, 40)
+	}):Play()
+	L_8_:Create(L_20_.Icon, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.5
+	}):Play()
+	L_8_:Create(L_20_.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		Transparency = 0
+	}):Play()
+	L_8_:Create(L_20_.Clear, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		ImageTransparency = .8
+	}):Play()
+	L_8_:Create(L_20_.Filter, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		ImageTransparency = .8
+	}):Play()
+	L_8_:Create(L_20_.Input, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+		TextTransparency = 0
+	}):Play()
+	wait(0.5)
+	L_28_ = false
+end
+L_20_.Input:GetPropertyChangedSignal('Text'):Connect(function()
+	local L_192_ = string.upper(L_20_.Input.Text)
+	for L_193_forvar0, L_194_forvar1 in ipairs(L_17_:GetChildren()) do
+		if L_194_forvar1 ~= 'Template' then
+			for L_195_forvar0, L_196_forvar1 in pairs(L_194_forvar1:GetChildren()) do
+				if L_196_forvar1:IsA("Frame") and L_196_forvar1.Name ~= 'Placeholder' and L_196_forvar1.Name ~= 'SectionSpacing' and not L_196_forvar1:GetAttribute('SectionTitle') then
+					if L_192_ == "" or string.find(string.upper(L_196_forvar1.Name), L_192_) ~= nil then
+						L_196_forvar1.Visible = true
+					else
+						L_196_forvar1.Visible = false
+					end
+				end
+			end
+		end
+	end
+end)
+L_20_.Clear.MouseButton1Down:Connect(function()
+	L_21_.Position = UDim2.new(0.957, 0, .5, 0)
+	L_21_.Size = UDim2.new(0, 1, 0, 1)
+	L_21_.BackgroundTransparency = .9
+
+	local L_197_ = {}
+	L_197_.Size = UDim2.new(0, 1000, 0, 500)
+	L_197_.BackgroundTransparency = 1
+
+	L_8_:Create(L_21_, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), L_197_):Play()
+	L_20_.Input.Text = ''
+end)
+
+function Maximise()
+	L_28_ = true
+	L_16_.ChangeSize.Image = "rbxassetid://" .. 10137941941
+
+
+	L_8_:Create(L_16_.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Transparency = 1
+	}):Play()
+	L_8_:Create(L_15_.Shadow.Image, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.4
+	}):Play()
+	L_8_:Create(L_16_.CornerRepair, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_16_.Divider, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_15_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 500, 0, 475)
+	}):Play()
+	L_8_:Create(L_16_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 500, 0, 45)
+	}):Play()
+	L_19_.Visible = true
+	wait(0.2)
+
+	L_17_.Visible = true
+
+	for L_198_forvar0, L_199_forvar1 in ipairs(L_17_:GetChildren()) do
+		if L_199_forvar1.Name ~= "Template" and L_199_forvar1.ClassName == "ScrollingFrame" and L_199_forvar1.Name ~= "Placeholder" then
+			for L_200_forvar0, L_201_forvar1 in ipairs(L_199_forvar1:GetChildren()) do
+				if L_201_forvar1.ClassName == "Frame" then
+					if L_201_forvar1.Name ~= "SectionSpacing" and L_201_forvar1.Name ~= "Placeholder" then
+						if L_201_forvar1.Name == "SectionTitle" then
+							L_8_:Create(L_201_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 0
+							}):Play()
+						else
+							L_8_:Create(L_201_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								BackgroundTransparency = 0
+							}):Play()
+							L_8_:Create(L_201_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								Transparency = 0
+							}):Play()
+							L_8_:Create(L_201_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 0
+							}):Play()
+						end
+						for L_202_forvar0, L_203_forvar1 in ipairs(L_201_forvar1:GetChildren()) do
+							if L_203_forvar1.Name ~= 'Description' and (L_203_forvar1.ClassName == "Frame" or L_203_forvar1.ClassName == "TextLabel" or L_203_forvar1.ClassName == "TextBox" or L_203_forvar1.ClassName == "ImageButton" or L_203_forvar1.ClassName == "ImageLabel") then
+								L_203_forvar1.Visible = true
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+
+	wait(0.1)
+
+	for L_204_forvar0, L_205_forvar1 in ipairs(L_19_:GetChildren()) do
+		if L_205_forvar1.ClassName == "Frame" and L_205_forvar1.Name ~= "Placeholder" then
+			if tostring(L_17_.UIPageLayout.CurrentPage) == L_205_forvar1.Title.Text then
+				L_8_:Create(L_205_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 0
+				}):Play()
+				L_8_:Create(L_205_forvar1.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0
+				}):Play()
+				L_8_:Create(L_205_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					TextTransparency = 0
+				}):Play()
+				L_8_:Create(L_205_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					Transparency = 1
+				}):Play()
+				L_8_:Create(L_205_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0.9
+				}):Play()
+			else
+				L_8_:Create(L_205_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 0.7
+				}):Play()
+				L_8_:Create(L_205_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0.7
+				}):Play()
+				L_8_:Create(L_205_forvar1.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					ImageTransparency = 0.2
+				}):Play()
+				L_8_:Create(L_205_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					TextTransparency = 0.2
+				}):Play()
+				L_8_:Create(L_205_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+					Transparency = 0
+				}):Play()
+			end
+
+		end
+	end
+
+
+	wait(0.5)
+	L_28_ = false
+end
+
+function Minimise()
+	L_28_ = true
+	L_16_.ChangeSize.Image = "rbxassetid://" .. 11036884234
+
+	for L_206_forvar0, L_207_forvar1 in ipairs(L_19_:GetChildren()) do
+		if L_207_forvar1.ClassName == "Frame" and L_207_forvar1.Name ~= "Placeholder" then
+			L_8_:Create(L_207_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 1
+			}):Play()
+			L_8_:Create(L_207_forvar1.Image, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 1
+			}):Play()
+			L_8_:Create(L_207_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				TextTransparency = 1
+			}):Play()
+			L_8_:Create(L_207_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 1
+			}):Play()
+			L_8_:Create(L_207_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				Transparency = 1
+			}):Play()
+		end
+	end
+
+	for L_208_forvar0, L_209_forvar1 in ipairs(L_17_:GetChildren()) do
+		if L_209_forvar1.Name ~= "Template" and L_209_forvar1.ClassName == "ScrollingFrame" and L_209_forvar1.Name ~= "Placeholder" then
+			for L_210_forvar0, L_211_forvar1 in ipairs(L_209_forvar1:GetChildren()) do
+				if L_211_forvar1.ClassName == "Frame" then
+					if L_211_forvar1.Name ~= "SectionSpacing" and L_211_forvar1.Name ~= "Placeholder" then
+						if L_211_forvar1.Name == "SectionTitle" then
+							L_8_:Create(L_211_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 1
+							}):Play()
+						else
+							L_8_:Create(L_211_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								BackgroundTransparency = 1
+							}):Play()
+							L_8_:Create(L_211_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								Transparency = 1
+							}):Play()
+							L_8_:Create(L_211_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 1
+							}):Play()
+						end
+						for L_212_forvar0, L_213_forvar1 in ipairs(L_211_forvar1:GetChildren()) do
+							if L_213_forvar1.ClassName == "Frame" or L_213_forvar1.ClassName == "TextLabel" or L_213_forvar1.ClassName == "TextBox" or L_213_forvar1.ClassName == "ImageButton" or L_213_forvar1.ClassName == "ImageLabel" then
+								L_213_forvar1.Visible = false
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	L_8_:Create(L_16_.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Transparency = 0
+	}):Play()
+	L_8_:Create(L_15_.Shadow.Image, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		ImageTransparency = 1
+	}):Play()
+	L_8_:Create(L_16_.CornerRepair, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_16_.Divider, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 1
+	}):Play()
+	L_8_:Create(L_15_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 495, 0, 45)
+	}):Play()
+	L_8_:Create(L_16_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 495, 0, 45)
+	}):Play()
+
+	wait(0.3)
+
+	L_17_.Visible = false
+	L_19_.Visible = false
+
+	wait(0.2)
+	L_28_ = false
+end
+
+function L_6_:CreateWindow(L_214_arg0)
+	local L_215_ = false
+	L_16_.Title.Text = L_214_arg0.Name
+	L_15_.Size = UDim2.new(0, 450, 0, 260)
+	L_15_.Visible = true
+	L_15_.BackgroundTransparency = 1
+	L_18_.Title.TextTransparency = 1
+	L_18_.Subtitle.TextTransparency = 1
+	L_15_.Shadow.Image.ImageTransparency = 1
+	L_18_.Version.TextTransparency = 1
+	L_18_.Title.Text = L_214_arg0.LoadingTitle or "Rayfield Interface Suite"
+	L_18_.Subtitle.Text = L_214_arg0.LoadingSubtitle or "by Sirius"
+	if L_214_arg0.LoadingTitle ~= "Rayfield Interface Suite" then
+		L_18_.Version.Text = "F2B"
+	end
+	L_16_.Visible = false
+	L_17_.Visible = false
+	L_18_.Visible = true
+
+
+	pcall(function()
+		if not L_214_arg0.ConfigurationSaving.FileName then
+			L_214_arg0.ConfigurationSaving.FileName = tostring(game.PlaceId)
+		end
+		if not isfolder(L_3_ .. "/Configuration Folders") then
+
+		end
+		if L_214_arg0.ConfigurationSaving.Enabled == nil then
+			L_214_arg0.ConfigurationSaving.Enabled = false
+		end
+		L_24_ = L_214_arg0.ConfigurationSaving.FileName
+		L_4_ = L_214_arg0.ConfigurationSaving.FolderName or L_4_
+		L_25_ = L_214_arg0.ConfigurationSaving.Enabled
+
+		if L_214_arg0.ConfigurationSaving.Enabled then
+			if not isfolder(L_4_) then
+				makefolder(L_4_)
+			end	
+		end
+	end)
+
+	L_33_func(L_16_, L_15_)
+
+	for L_218_forvar0, L_219_forvar1 in ipairs(L_19_:GetChildren()) do
+		if L_219_forvar1.ClassName == "Frame" and L_219_forvar1.Name ~= "Placeholder" then
+			L_219_forvar1.BackgroundTransparency = 1
+			L_219_forvar1.Title.TextTransparency = 1
+			L_219_forvar1.Shadow.ImageTransparency = 1
+			L_219_forvar1.Image.ImageTransparency = 1
+			L_219_forvar1.UIStroke.Transparency = 1
+		end
+	end
+
+	if L_214_arg0.Discord then
+		if not isfolder(L_3_ .. "/Discord Invites") then
+			makefolder(L_3_ .. "/Discord Invites")
+		end
+		if not isfile(L_3_ .. "/Discord Invites" .. "/" .. L_214_arg0.Discord.Invite .. L_5_) then
+			if L_23_ then
+				L_23_({
+					Url = 'http://127.0.0.1:6463/rpc?v=1',
+					Method = 'POST',
+					Headers = {
+						['Content-Type'] = 'application/json',
+						Origin = 'https://discord.com'
+					},
+					Body = L_9_:JSONEncode({
+						cmd = 'INVITE_BROWSER',
+						nonce = L_9_:GenerateGUID(false),
+						args = {
+							code = L_214_arg0.Discord.Invite
+						}
+					})
+				})
+			end
+
+			if L_214_arg0.Discord.RememberJoins then -- We do logic this way so if the developer changes this setting, the user still won't be prompted, only new users
+				writefile(L_3_ .. "/Discord Invites" .. "/" .. L_214_arg0.Discord.Invite .. L_5_, "Rayfield RememberJoins is true for this invite, this invite will not ask you to join again")
+			end
+		else
+
+		end
+	end
+
+	if L_214_arg0.KeySystem then
+		if not L_214_arg0.KeySettings then
+			L_215_ = true
+			return
+		end
+
+		if not isfolder(L_3_ .. "/Key System") then
+			makefolder(L_3_ .. "/Key System")
+		end
+
+		if L_214_arg0.KeySettings.GrabKeyFromSite then
+			local L_220_, L_221_ = pcall(function()
+				L_214_arg0.KeySettings.Key = game:HttpGet(L_214_arg0.KeySettings.Key)
+			end)
+			if not L_220_ then
+				print("Rayfield | " .. L_214_arg0.KeySettings.Key .. " Error " .. tostring(L_221_))
+			end
+		end
+
+		if not L_214_arg0.KeySettings.FileName then
+			L_214_arg0.KeySettings.FileName = "No file name specified"
+		end
+
+		if isfile(L_3_ .. "/Key System" .. "/" .. L_214_arg0.KeySettings.FileName .. L_5_) then
+			if readfile(L_3_ .. "/Key System" .. "/" .. L_214_arg0.KeySettings.FileName .. L_5_) == L_214_arg0.KeySettings.Key then
+				L_215_ = true
+			end
+		end
+
+		if not L_215_ then
+			local L_222_ = math.random(2, 6)
+			L_13_.Enabled = false
+			local L_223_ = game:GetObjects("rbxassetid://11695805160")[1]
+			L_223_.Enabled = true
+			if gethui then
+				L_223_.Parent = gethui()
+			elseif syn.protect_gui then
+				syn.protect_gui(L_13_)
+				L_223_.Parent = L_12_
+			else
+				L_223_.Parent = L_12_
+			end
+
+			if gethui then
+				for L_225_forvar0, L_226_forvar1 in ipairs(gethui():GetChildren()) do
+					if L_226_forvar1.Name == L_223_.Name and L_226_forvar1 ~= L_223_ then
+						L_226_forvar1.Enabled = false
+						L_226_forvar1.Name = "KeyUI-Old"
+					end
+				end
+			else
+				for L_227_forvar0, L_228_forvar1 in ipairs(L_12_:GetChildren()) do
+					if L_228_forvar1.Name == L_223_.Name and L_228_forvar1 ~= L_223_ then
+						L_228_forvar1.Enabled = false
+						L_228_forvar1.Name = "KeyUI-Old"
+					end
+				end
+			end
+
+			local L_224_ = L_223_.Main
+			L_224_.Title.Text = L_214_arg0.KeySettings.Title or L_214_arg0.Name
+			L_224_.Subtitle.Text = L_214_arg0.KeySettings.Subtitle or "Key System"
+			L_224_.NoteMessage.Text = L_214_arg0.KeySettings.Note or "No instructions"
+
+			L_224_.Size = UDim2.new(0, 467, 0, 175)
+			L_224_.BackgroundTransparency = 1
+			L_224_.EShadow.ImageTransparency = 1
+			L_224_.Title.TextTransparency = 1
+			L_224_.Subtitle.TextTransparency = 1
+			L_224_.KeyNote.TextTransparency = 1
+			L_224_.Input.BackgroundTransparency = 1
+			L_224_.Input.UIStroke.Transparency = 1
+			L_224_.Input.InputBox.TextTransparency = 1
+			L_224_.NoteTitle.TextTransparency = 1
+			L_224_.NoteMessage.TextTransparency = 1
+			L_224_.Hide.ImageTransparency = 1
+
+			L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+				Size = UDim2.new(0, 500, 0, 187)
+			}):Play()
+			L_8_:Create(L_224_.EShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.5
+			}):Play()
+			wait(0.05)
+			L_8_:Create(L_224_.Title, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			L_8_:Create(L_224_.Subtitle, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			wait(0.05)
+			L_8_:Create(L_224_.KeyNote, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			L_8_:Create(L_224_.Input, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_224_.Input.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_224_.Input.InputBox, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			wait(0.05)
+			L_8_:Create(L_224_.NoteTitle, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			L_8_:Create(L_224_.NoteMessage, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			wait(0.15)
+			L_8_:Create(L_224_.Hide, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.3
+			}):Play()
+
+
+			L_223_.Main.Input.InputBox.FocusLost:Connect(function()
+				if L_224_.Input.InputBox.Text == L_214_arg0.KeySettings.Key then
+					L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Size = UDim2.new(0, 467, 0, 175)
+					}):Play()
+					L_8_:Create(L_224_.EShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						ImageTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.Title, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.Subtitle, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.KeyNote, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.Input, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						BackgroundTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.Input.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_8_:Create(L_224_.Input.InputBox, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.NoteTitle, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.NoteMessage, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_224_.Hide, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+						ImageTransparency = 1
+					}):Play()
+					delay(.4, function()
+						L_224_.Hide.Visible = false
+					end)
+					wait(0.51)
+					L_215_ = true
+					if L_214_arg0.KeySettings.SaveKey then
+						if writefile then
+							writefile(L_3_ .. "/Key System" .. "/" .. L_214_arg0.KeySettings.FileName .. L_5_, L_214_arg0.KeySettings.Key)
+						end
+						L_6_:Notify({
+							Title = "Key System",
+							Content = "The key for this script has been saved successfully"
+						})
+					end
+				else
+					if L_222_ == 0 then
+						L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+							BackgroundTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+							Size = UDim2.new(0, 467, 0, 175)
+						}):Play()
+						L_8_:Create(L_224_.Shadow.Image, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							ImageTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.Title, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+							TextTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.Subtitle, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							TextTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.KeyNote, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							TextTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.Input, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							BackgroundTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.Input.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							Transparency = 1
+						}):Play()
+						L_8_:Create(L_224_.Input.InputBox, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							TextTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.NoteTitle, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+							TextTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.NoteMessage, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+							TextTransparency = 1
+						}):Play()
+						L_8_:Create(L_224_.Hide, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+							ImageTransparency = 1
+						}):Play()
+						wait(0.45)
+						game.Players.LocalPlayer:Kick("No Attempts Remaining")
+						game:Shutdown()
+					end
+					L_224_.Input.InputBox.Text = ""
+					L_222_ = L_222_ - 1
+					L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Size = UDim2.new(0, 467, 0, 175)
+					}):Play()
+					L_8_:Create(L_224_, TweenInfo.new(0.4, Enum.EasingStyle.Elastic), {
+						Position = UDim2.new(0.495, 0, 0.5, 0)
+					}):Play()
+					wait(0.1)
+					L_8_:Create(L_224_, TweenInfo.new(0.4, Enum.EasingStyle.Elastic), {
+						Position = UDim2.new(0.505, 0, 0.5, 0)
+					}):Play()
+					wait(0.1)
+					L_8_:Create(L_224_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+						Position = UDim2.new(0.5, 0, 0.5, 0)
+					}):Play()
+					L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Size = UDim2.new(0, 500, 0, 187)
+					}):Play()
+				end
+			end)
+
+			L_224_.Hide.MouseButton1Click:Connect(function()
+				L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					Size = UDim2.new(0, 467, 0, 175)
+				}):Play()
+				L_8_:Create(L_224_.EShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					ImageTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.Title, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.Subtitle, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.KeyNote, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.Input, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					BackgroundTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.Input.UIStroke, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					Transparency = 1
+				}):Play()
+				L_8_:Create(L_224_.Input.InputBox, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.NoteTitle, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.NoteMessage, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					TextTransparency = 1
+				}):Play()
+				L_8_:Create(L_224_.Hide, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					ImageTransparency = 1
+				}):Play()
+				wait(0.51)
+				L_6_:Destroy()
+				L_223_:Destroy()
+			end)
+		else
+			L_215_ = true
+		end
+	end
+	if L_214_arg0.KeySystem then
+		repeat
+			wait()
+		until L_215_
+	end
+
+	L_31_.Template.Visible = false
+	L_31_.Visible = true
+	L_13_.Enabled = true
+	wait(0.5)
+	L_8_:Create(L_15_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_15_.Shadow.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.55
+	}):Play()
+	wait(0.1)
+	L_8_:Create(L_18_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		TextTransparency = 0
+	}):Play()
+	wait(0.05)
+	L_8_:Create(L_18_.Subtitle, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		TextTransparency = 0
+	}):Play()
+	wait(0.05)
+	L_8_:Create(L_18_.Version, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		TextTransparency = 0
+	}):Play()
+
+	L_17_.Template.LayoutOrder = 100000
+	L_17_.Template.Visible = false
+
+	L_17_.UIPageLayout.FillDirection = Enum.FillDirection.Horizontal
+	L_19_.Template.Visible = false
+
+	-- Tab
+	local L_216_ = false
+	local L_217_ = {}
+	function L_217_:CreateTab(L_229_arg0, L_230_arg1)
+		local L_231_ = false
+		local L_232_ = L_19_.Template:Clone()
+		L_232_.Name = L_229_arg0
+		L_232_.Title.Text = L_229_arg0
+		L_232_.Parent = L_19_
+		L_232_.Title.TextWrapped = false
+		L_232_.Size = UDim2.new(0, L_232_.Title.TextBounds.X + 30, 0, 30)
+
+		if L_230_arg1 then
+			L_232_.Title.AnchorPoint = Vector2.new(0, 0.5)
+			L_232_.Title.Position = UDim2.new(0, 37, 0.5, 0)
+			L_232_.Image.Image = "rbxassetid://" .. L_230_arg1
+			L_232_.Image.Visible = true
+			L_232_.Title.TextXAlignment = Enum.TextXAlignment.Left
+			L_232_.Size = UDim2.new(0, L_232_.Title.TextBounds.X + 46, 0, 30)
+		end
+
+		L_232_.BackgroundTransparency = 1
+		L_232_.Title.TextTransparency = 1
+		L_232_.Shadow.ImageTransparency = 1
+		L_232_.Image.ImageTransparency = 1
+		L_232_.UIStroke.Transparency = 1
+
+		L_232_.Visible = true
+
+		 --Create Elements Page
+		local L_233_ = L_17_.Template:Clone()
+		L_233_.Name = L_229_arg0
+		L_233_.Visible = true
+
+		L_233_.LayoutOrder = # L_17_:GetChildren()
+
+		for L_235_forvar0, L_236_forvar1 in ipairs(L_233_:GetChildren()) do
+			if L_236_forvar1.ClassName == "Frame" and L_236_forvar1.Name ~= "Placeholder" then
+				L_236_forvar1:Destroy()
+			end
+		end
+
+		L_233_.Parent = L_17_
+		if not L_216_ then
+			L_17_.UIPageLayout.Animated = false
+			L_17_.UIPageLayout:JumpTo(L_233_)
+			L_17_.UIPageLayout.Animated = true
+		end
+
+		if L_32_ ~= L_6_.Theme.Default then
+			L_232_.Shadow.Visible = false
+		end
+		L_232_.UIStroke.Color = L_32_.TabStroke
+		 --Animate
+		wait(0.1)
+		if L_216_ then
+			L_232_.BackgroundColor3 = L_32_.TabBackground
+			L_232_.Image.ImageColor3 = L_32_.TabTextColor
+			L_232_.Title.TextColor3 = L_32_.TabTextColor
+			L_8_:Create(L_232_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0.7
+			}):Play()
+			L_8_:Create(L_232_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0.2
+			}):Play()
+			L_8_:Create(L_232_.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.2
+			}):Play()
+			L_8_:Create(L_232_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+
+			L_8_:Create(L_232_.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.7
+			}):Play()
+		else
+			L_216_ = L_229_arg0
+			L_232_.BackgroundColor3 = L_32_.TabBackgroundSelected
+			L_232_.Image.ImageColor3 = L_32_.SelectedTabTextColor
+			L_232_.Title.TextColor3 = L_32_.SelectedTabTextColor
+			L_8_:Create(L_232_.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.9
+			}):Play()
+			L_8_:Create(L_232_.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0
+			}):Play()
+			L_8_:Create(L_232_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_232_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+		end
+
+
+		L_232_.Interact.MouseButton1Click:Connect(function()
+			if L_26_ then
+				return
+			end
+			L_8_:Create(L_232_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_232_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 1
+			}):Play()
+			L_8_:Create(L_232_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+			L_8_:Create(L_232_.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0
+			}):Play()
+			L_8_:Create(L_232_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundColor3 = L_32_.TabBackgroundSelected
+			}):Play()
+			L_8_:Create(L_232_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextColor3 = L_32_.SelectedTabTextColor
+			}):Play()
+			L_8_:Create(L_232_.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageColor3 = L_32_.SelectedTabTextColor
+			}):Play()
+			L_8_:Create(L_232_.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.9
+			}):Play()
+
+			for L_237_forvar0, L_238_forvar1 in ipairs(L_19_:GetChildren()) do
+				if L_238_forvar1.Name ~= "Template" and L_238_forvar1.ClassName == "Frame" and L_238_forvar1 ~= L_232_ and L_238_forvar1.Name ~= "Placeholder" then
+					L_8_:Create(L_238_forvar1, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.TabBackground
+					}):Play()
+					L_8_:Create(L_238_forvar1.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						TextColor3 = L_32_.TabTextColor
+					}):Play()
+					L_8_:Create(L_238_forvar1.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						ImageColor3 = L_32_.TabTextColor
+					}):Play()
+					L_8_:Create(L_238_forvar1, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						BackgroundTransparency = 0.7
+					}):Play()
+					L_8_:Create(L_238_forvar1.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						TextTransparency = 0.2
+					}):Play()
+					L_8_:Create(L_238_forvar1.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						ImageTransparency = 0.2
+					}):Play()
+					L_8_:Create(L_238_forvar1.Shadow, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+						ImageTransparency = 0.7
+					}):Play()
+					L_8_:Create(L_238_forvar1.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+			end
+			if L_17_.UIPageLayout.CurrentPage ~= L_233_ then
+				L_8_:Create(L_17_, TweenInfo.new(1, Enum.EasingStyle.Quint), {
+					Size = UDim2.new(0, 460, 0, 330)
+				}):Play()
+				L_17_.UIPageLayout:JumpTo(L_233_)
+				wait(0.2)
+				L_8_:Create(L_17_, TweenInfo.new(0.8, Enum.EasingStyle.Quint), {
+					Size = UDim2.new(0, 475, 0, 366)
+				}):Play()
+			end
+
+		end)
+
+		local L_234_ = {}
+
+		-- Button
+		function L_234_:CreateButton(L_239_arg0)
+			local L_240_ = {}
+
+			local L_241_ = L_17_.Template.Button:Clone()
+			L_241_.Name = L_239_arg0.Name
+			L_241_.Title.Text = L_239_arg0.Name
+			L_241_.ElementIndicator.Text = L_239_arg0.Interact or 'button'
+			L_241_.Visible = true
+			L_241_.Parent = L_233_
+
+			L_241_.BackgroundTransparency = 1
+			L_241_.UIStroke.Transparency = 1
+			L_241_.Title.TextTransparency = 1
+
+			L_8_:Create(L_241_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_241_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_241_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+			
+			if L_239_arg0.Info then
+				L_241_.Description.Text = L_239_arg0.Info
+				local L_242_ = false
+				local L_243_ = false
+				local L_244_ = L_241_.Size.Y.Offset
+
+				L_241_.MouseEnter:Connect(function(L_245_arg0, L_246_arg1)
+					L_242_ = true
+					wait(0.2)
+					if L_242_ then
+						L_243_ = true
+						L_241_.Description.Visible = true
+						game:GetService('TweenService'):Create(L_241_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_244_ + L_241_.Description.Size.Y.Offset + 15)
+						}):Play()
+					end
+				end)
+				L_241_.MouseLeave:Connect(function(L_247_arg0, L_248_arg1)
+					if L_242_ then
+						L_242_ = false
+					end
+					if L_243_ then
+						L_243_ = false
+						game:GetService('TweenService'):Create(L_241_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_244_)
+						}):Play()
+						delay(.4, function()
+							if not L_243_ then
+								L_241_.Description.Visible = false
+							end
+						end)
+					end
+				end)
+			end
+
+			L_241_.Interact.MouseButton1Click:Connect(function()
+				local L_249_, L_250_ = pcall(L_239_arg0.Callback)
+				if not L_249_ then
+					L_8_:Create(L_241_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+					}):Play()
+					L_8_:Create(L_241_.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_241_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_241_.Title.Text = "Callback Error"
+					print("Rayfield | " .. L_239_arg0.Name .. " Callback Error " .. tostring(L_250_))
+					wait(0.5)
+					L_241_.Title.Text = L_239_arg0.Name
+					L_8_:Create(L_241_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_241_.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						TextTransparency = 0.9
+					}):Play()
+					L_8_:Create(L_241_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				else
+					L_37_func()
+					L_8_:Create(L_241_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackgroundHover
+					}):Play()
+					L_8_:Create(L_241_.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						TextTransparency = 1
+					}):Play()
+					L_8_:Create(L_241_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					wait(0.2)
+					L_8_:Create(L_241_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_241_.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						TextTransparency = 0.9
+					}):Play()
+					L_8_:Create(L_241_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+			end)
+
+			L_241_.MouseEnter:Connect(function()
+				L_8_:Create(L_241_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackgroundHover
+				}):Play()
+				L_8_:Create(L_241_.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					TextTransparency = 0.7
+				}):Play()
+			end)
+
+			L_241_.MouseLeave:Connect(function()
+				L_8_:Create(L_241_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+				L_8_:Create(L_241_.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					TextTransparency = 0.9
+				}):Play()
+			end)
+
+			function L_240_:Set(L_251_arg0, L_252_arg1)
+				L_241_.Title.Text = L_251_arg0
+				L_241_.Name = L_251_arg0
+				L_241_.ElementIndicator.Text = L_252_arg1
+			end
+
+			return L_240_
+		end
+
+		-- Section
+		function L_234_:CreateSection(L_253_arg0)
+
+			local L_254_ = {}
+
+			if L_231_ then
+				local L_256_ = L_17_.Template.SectionSpacing:Clone()
+				L_256_.Visible = true
+				L_256_.Parent = L_233_
+			end
+
+			local L_255_ = L_17_.Template.SectionTitle:Clone()
+			L_255_.Title.Text = L_253_arg0
+			L_255_.Visible = true
+			L_255_.Parent = L_233_
+
+			L_255_.Title.TextTransparency = 1
+			L_8_:Create(L_255_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()
+
+			function L_254_:Set(L_257_arg0)
+				L_255_.Title.Text = L_257_arg0
+			end
+
+			L_231_ = true
+
+			return L_254_
+		end
+
+		-- Label
+		function L_234_:CreateLabel(L_258_arg0)
+			local L_259_ = {}
+
+			local L_260_ = L_17_.Template.Label:Clone()
+			L_260_.Title.Text = L_258_arg0
+			L_260_.Visible = true
+			L_260_.Parent = L_233_
+
+			L_260_.BackgroundTransparency = 1
+			L_260_.UIStroke.Transparency = 1
+			L_260_.Title.TextTransparency = 1
+
+			L_260_.BackgroundColor3 = L_32_.SecondaryElementBackground
+			L_260_.UIStroke.Color = L_32_.SecondaryElementStroke
+
+			L_8_:Create(L_260_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_260_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_260_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+
+			function L_259_:Set(L_261_arg0)
+				L_260_.Title.Text = L_261_arg0
+			end
+
+			return L_259_
+		end
+
+		-- Paragraph
+		function L_234_:CreateParagraph(L_262_arg0)
+			local L_263_ = {}
+
+			local L_264_ = L_17_.Template.Paragraph:Clone()
+			L_264_.Title.Text = L_262_arg0.Title
+			L_264_.Content.Text = L_262_arg0.Content
+			L_264_.Visible = true
+			L_264_.Parent = L_233_
+
+			L_264_.Content.Size = UDim2.new(0, 438, 0, L_264_.Content.TextBounds.Y)
+			--Paragraph.Content.Position = UDim2.new(1, -10, 0,76)
+			L_264_.Size = UDim2.new(1, -10, 0, L_264_.Content.TextBounds.Y + 40)
+
+			L_264_.BackgroundTransparency = 1
+			L_264_.UIStroke.Transparency = 1
+			L_264_.Title.TextTransparency = 1
+			L_264_.Content.TextTransparency = 1
+
+			L_264_.BackgroundColor3 = L_32_.SecondaryElementBackground
+			L_264_.UIStroke.Color = L_32_.SecondaryElementStroke
+
+			L_8_:Create(L_264_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_264_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_264_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+			L_8_:Create(L_264_.Content, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+
+			function L_263_:Set(L_265_arg0)
+				L_264_.Title.Text = L_265_arg0.Title
+				L_264_.Content.Text = L_265_arg0.Content
+			end
+
+			return L_263_
+		end
+
+		-- Input
+		function L_234_:CreateInput(L_266_arg0)
+			local L_267_ = L_17_.Template.Input:Clone()
+			L_267_.Name = L_266_arg0.Name
+			L_267_.Title.Text = L_266_arg0.Name
+			L_267_.Visible = true
+			L_267_.Parent = L_233_
+			
+
+			L_267_.BackgroundTransparency = 1
+			L_267_.UIStroke.Transparency = 1
+			L_267_.Title.TextTransparency = 1
+
+			L_267_.InputFrame.BackgroundColor3 = L_32_.InputBackground
+			L_267_.InputFrame.UIStroke.Color = L_32_.InputStroke
+
+			L_8_:Create(L_267_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_267_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_267_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+
+			L_267_.InputFrame.InputBox.PlaceholderText = L_266_arg0.PlaceholderText
+			L_267_.InputFrame.Size = UDim2.new(0, L_267_.InputFrame.InputBox.TextBounds.X + 24, 0, 30)
+			
+			if L_266_arg0.Info then
+				L_267_.Description.Text = L_266_arg0.Info
+				local L_268_ = false
+				local L_269_ = false
+				local L_270_ = L_267_.Size.Y.Offset
+
+				L_267_.MouseEnter:Connect(function(L_271_arg0, L_272_arg1)
+					L_268_ = true
+					wait(0.2)
+					if L_268_ then
+						L_269_ = true
+						L_267_.Description.Visible = true
+						game:GetService('TweenService'):Create(L_267_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_270_ + L_267_.Description.Size.Y.Offset + 15)
+						}):Play()
+					end
+				end)
+				L_267_.MouseLeave:Connect(function(L_273_arg0, L_274_arg1)
+					if L_268_ then
+						L_268_ = false
+					end
+					if L_269_ then
+						L_269_ = false
+						game:GetService('TweenService'):Create(L_267_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_270_)
+						}):Play()
+						delay(.4, function()
+							if not L_269_ then
+								L_267_.Description.Visible = false
+							end
+						end)
+					end
+				end)
+			end
+			
+			if L_266_arg0.NumbersOnly or L_266_arg0.CharacterLimit then
+				L_267_.InputFrame.InputBox:GetPropertyChangedSignal('Text'):Connect(function()
+					if L_266_arg0.CharacterLimit then
+						L_267_.InputFrame.InputBox.Text = L_267_.InputFrame.InputBox.Text:sub(1, L_266_arg0.CharacterLimit)
+					end
+					if L_266_arg0.NumbersOnly then
+						L_267_.InputFrame.InputBox.Text = L_267_.InputFrame.InputBox.Text:gsub('%D+', '')
+					end
+				end)
+			end
+			
+			L_267_.InputFrame.InputBox.FocusLost:Connect(function(L_275_arg0)
+				if L_266_arg0.OnEnter and not L_275_arg0 then
+					if L_266_arg0.RemoveTextAfterFocusLost then
+						L_267_.InputFrame.InputBox.Text = ""
+					end
+					return
+				end
+				local L_276_, L_277_ = pcall(function()
+					L_266_arg0.Callback(L_267_.InputFrame.InputBox.Text)
+				end)
+				if not L_276_ then
+					L_8_:Create(L_267_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+					}):Play()
+					L_8_:Create(L_267_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_267_.Title.Text = "Callback Error"
+					print("Rayfield | " .. L_266_arg0.Name .. " Callback Error " .. tostring(L_277_))
+					wait(0.5)
+					L_267_.Title.Text = L_266_arg0.Name
+					L_8_:Create(L_267_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_267_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+
+				if L_266_arg0.RemoveTextAfterFocusLost then
+					L_267_.InputFrame.InputBox.Text = ""
+				end
+				L_37_func()
+			end)
+
+			L_267_.MouseEnter:Connect(function()
+				L_8_:Create(L_267_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackgroundHover
+				}):Play()
+			end)
+
+			L_267_.MouseLeave:Connect(function()
+				L_8_:Create(L_267_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+			end)
+
+			L_267_.InputFrame.InputBox:GetPropertyChangedSignal("Text"):Connect(function()
+				L_8_:Create(L_267_.InputFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+					Size = UDim2.new(0, L_267_.InputFrame.InputBox.TextBounds.X + 24, 0, 30)
+				}):Play()
+			end)
+		end
+
+		-- Dropdown
+		function L_234_:CreateDropdown(L_278_arg0)
+			local L_279_ = L_17_.Template.Dropdown:Clone()
+			if string.find(L_278_arg0.Name, "closed") then
+				L_279_.Name = "Dropdown"
+			else
+				L_279_.Name = L_278_arg0.Name
+			end
+			L_279_.Title.Text = L_278_arg0.Name
+			L_279_.Visible = true
+			L_279_.Parent = L_233_
+
+			L_279_.List.Visible = false
+
+			L_279_.Selected.Text = L_278_arg0.CurrentOption
+
+			L_279_.BackgroundTransparency = 1
+			L_279_.UIStroke.Transparency = 1
+			L_279_.Title.TextTransparency = 1
+
+			L_279_.Size = UDim2.new(1, -10, 0, 45)
+
+			L_8_:Create(L_279_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_279_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+
+			for L_283_forvar0, L_284_forvar1 in ipairs(L_279_.List:GetChildren()) do
+				if L_284_forvar1.ClassName == "Frame" and L_284_forvar1.Name ~= "ZZZZZZZZZ" and L_284_forvar1.Name ~= "," and L_284_forvar1.Name ~= ",---S=()earch" then
+					L_284_forvar1:Destroy()
+				end
+			end
+
+			L_279_.Toggle.Rotation = 180
+
+			L_279_.Interact.MouseButton1Click:Connect(function()
+				L_8_:Create(L_279_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackgroundHover
+				}):Play()
+				L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					Transparency = 1
+				}):Play()
+				wait(0.1)
+				L_8_:Create(L_279_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+				L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+					Transparency = 0
+				}):Play()
+				if L_28_ then
+					return
+				end
+				if L_279_.List.Visible then
+					L_28_ = true
+					L_8_:Create(L_279_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						Size = UDim2.new(1, -10, 0, 45)
+					}):Play()
+					for L_285_forvar0, L_286_forvar1 in ipairs(L_279_.List:GetChildren()) do
+						if L_286_forvar1.ClassName == "Frame" and L_286_forvar1.Name ~= "ZZZZZZZZZ" and L_286_forvar1.Name ~= "," and L_286_forvar1.Name ~= ",---S=()earch" then
+							L_8_:Create(L_286_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								BackgroundTransparency = 1
+							}):Play()
+							L_8_:Create(L_286_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								Transparency = 1
+							}):Play()
+							L_8_:Create(L_286_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 1
+							}):Play()
+						end
+					end
+					L_8_:Create(L_279_.List, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+						ScrollBarImageTransparency = 1
+					}):Play()
+					L_8_:Create(L_279_.Toggle, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						Rotation = 180
+					}):Play()	
+					wait(0.35)
+					L_279_.List.Visible = false
+					L_28_ = false
+				else
+					L_8_:Create(L_279_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+						Size = UDim2.new(1, -10, 0, 186)
+					}):Play()
+					L_279_.List.Visible = true
+					L_8_:Create(L_279_.List, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+						ScrollBarImageTransparency = 0.7
+					}):Play()
+					L_8_:Create(L_279_.Toggle, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+						Rotation = 0
+					}):Play()	
+					for L_287_forvar0, L_288_forvar1 in ipairs(L_279_.List:GetChildren()) do
+						if L_288_forvar1.ClassName == "Frame" and L_288_forvar1.Name ~= "ZZZZZZZZZ" and L_288_forvar1.Name ~= "," and L_288_forvar1.Name ~= ",---S=()earch" then
+							L_8_:Create(L_288_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								BackgroundTransparency = 0
+							}):Play()
+							L_8_:Create(L_288_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								Transparency = 0
+							}):Play()
+							L_8_:Create(L_288_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+								TextTransparency = 0
+							}):Play()
+						end
+					end
+				end
+			end)
+			
+			L_279_.List[',---S=()earch'].Input:GetPropertyChangedSignal('Text'):Connect(function()
+				local L_289_ = string.upper(L_279_.List[',---S=()earch'].Input.Text)
+				for L_290_forvar0, L_291_forvar1 in ipairs(L_279_.List:GetChildren()) do
+					if L_291_forvar1:IsA('Frame') and L_291_forvar1.Name ~= 'Template' and L_291_forvar1.Name ~= ',---S=()earch' and L_291_forvar1.Name ~= ',' and L_291_forvar1.Name ~= 'ZZZZZZZZZ' then
+						if L_289_ == "" or string.find(string.upper(L_291_forvar1.Name), L_289_) ~= nil then
+							L_291_forvar1.Visible = true
+						else
+							L_291_forvar1.Visible = false
+						end
+					end
+				end
+			end)
+			L_279_.MouseEnter:Connect(function()
+				if not L_279_.List.Visible then
+					L_8_:Create(L_279_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackgroundHover
+					}):Play()
+				end
+			end)
+
+			L_279_.MouseLeave:Connect(function()
+				L_8_:Create(L_279_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+			end)
+			
+			local function L_280_func(L_292_arg0)
+				L_8_:Create(L_279_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+				}):Play()
+				L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					Transparency = 1
+				}):Play()
+				L_279_.Title.Text = L_292_arg0
+				wait(0.5)
+				L_279_.Title.Text = L_278_arg0.Name
+				L_8_:Create(L_279_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+				L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					Transparency = 0
+				}):Play()
+			end
+			
+			local function L_281_func(L_293_arg0, L_294_arg1)
+				local L_295_ = L_17_.Template.Dropdown.List.Template:Clone()
+				L_295_.Name = L_293_arg0
+				L_295_.Title.Text = L_293_arg0
+				L_295_.Parent = L_279_.List
+				L_295_.Visible = true
+
+				if L_278_arg0.CurrentOption == L_293_arg0 then
+					L_295_.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+				end
+
+				L_295_.BackgroundTransparency = 1
+				L_295_.UIStroke.Transparency = 1
+				L_295_.Title.TextTransparency = 1
+
+				L_295_.Interact.ZIndex = 50
+				L_295_.Interact.MouseButton1Click:Connect(function()
+					if L_279_.Selected.Text ~= L_293_arg0 then
+						L_279_.Selected.Text = L_293_arg0
+
+						local L_296_, L_297_ = pcall(function()
+							L_278_arg0.Callback(L_293_arg0)
+						end)
+						if not L_296_ then
+							L_280_func('Callback Error')
+							print("Rayfield | " .. L_278_arg0.Name .. " Callback Error " .. tostring(L_297_))
+						end
+						L_278_arg0.CurrentOption = L_293_arg0
+						for L_298_forvar0, L_299_forvar1 in ipairs(L_279_.List:GetChildren()) do
+							if L_299_forvar1.ClassName == "Frame" and L_299_forvar1.Name ~= "ZZZZZZZZZ" and L_299_forvar1.Name ~= "," and L_299_forvar1.Name ~= ",---S=()earch" and L_299_forvar1.Name ~= L_278_arg0.CurrentOption then
+								L_8_:Create(L_299_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+									BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+								}):Play()
+							end
+						end
+						L_8_:Create(L_295_.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+							Transparency = 1
+						}):Play()
+						L_8_:Create(L_295_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+							BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+						}):Play()
+						L_28_ = true
+						wait(0.2)
+						L_8_:Create(L_295_.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+							Transparency = 0
+						}):Play()
+						wait(0.1)
+						L_8_:Create(L_279_, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+							Size = UDim2.new(1, -10, 0, 45)
+						}):Play()
+						for L_300_forvar0, L_301_forvar1 in ipairs(L_279_.List:GetChildren()) do
+							if L_301_forvar1.ClassName == "Frame" and L_301_forvar1.Name ~= "ZZZZZZZZZ" and L_301_forvar1.Name ~= "," and L_301_forvar1.Name ~= ",---S=()earch" then
+								L_8_:Create(L_301_forvar1, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+									BackgroundTransparency = 1
+								}):Play()
+								L_8_:Create(L_301_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+									Transparency = 1
+								}):Play()
+								L_8_:Create(L_301_forvar1.Title, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+									TextTransparency = 1
+								}):Play()
+							end
+						end
+						L_8_:Create(L_279_.List, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+							ScrollBarImageTransparency = 1
+						}):Play()
+						L_8_:Create(L_279_.Toggle, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+							Rotation = 180
+						}):Play()	
+						wait(0.35)
+						L_279_.List.Visible = false
+						L_28_ = false	
+						L_37_func()
+					end
+				end)
+			end
+			function L_278_arg0:Add(L_302_arg0, L_303_arg1)
+				L_281_func(L_302_arg0, L_303_arg1)
+			end
+			local function L_282_func(L_304_arg0, L_305_arg1)
+				for L_306_forvar0, L_307_forvar1 in ipairs(L_304_arg0) do
+					L_281_func(L_307_forvar1, L_305_arg1)
+				end
+				if L_214_arg0.ConfigurationSaving then
+					if L_214_arg0.ConfigurationSaving.Enabled and L_278_arg0.Flag then
+						L_6_.Flags[L_278_arg0.Flag] = L_278_arg0
+					end
+				end
+			end
+			L_282_func(L_278_arg0.Options)
+
+			function L_278_arg0:Set(L_308_arg0)
+				L_279_.Selected.Text = L_308_arg0
+				L_278_arg0.CurrentOption = L_308_arg0
+				local L_309_, L_310_ = pcall(function()
+					L_278_arg0.Callback(L_308_arg0)
+				end)
+				if not L_309_ then
+					L_8_:Create(L_279_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+					}):Play()
+					L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_279_.Title.Text = "Callback Error"
+					print("Rayfield | " .. L_278_arg0.Name .. " Callback Error " .. tostring(L_310_))
+					wait(0.5)
+					L_279_.Title.Text = L_278_arg0.Name
+					L_8_:Create(L_279_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_279_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+
+				for L_311_forvar0, L_312_forvar1 in ipairs(L_279_.List:GetChildren()) do
+					if L_312_forvar1.Name ~= L_308_arg0 then
+						if L_312_forvar1.ClassName == "Frame" and L_312_forvar1.Name ~= "ZZZZZZZZZ" and L_312_forvar1.Name ~= "," and L_312_forvar1.Name ~= '---S=()earch' then
+							L_312_forvar1.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+						end
+					else
+						L_312_forvar1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+					end
+
+				end
+			end
+			function L_278_arg0:Error(L_313_arg0)
+				L_280_func(L_313_arg0)
+			end
+			function L_278_arg0:Refresh(L_314_arg0, L_315_arg1)
+				L_279_.Selected.Text = L_315_arg1
+				for L_316_forvar0, L_317_forvar1 in ipairs(L_279_.List:GetChildren()) do
+					if L_317_forvar1.ClassName == "Frame" and L_317_forvar1.Name ~= ',---S=()earch' and L_317_forvar1.Name ~= "ZZZZZZZZZ" and L_317_forvar1.Name ~= "," and L_317_forvar1.Name ~= '---S=()earch' then
+						L_317_forvar1:Destroy()
+					end
+				end
+				L_282_func(L_314_arg0, L_315_arg1)
+			end
+			function L_278_arg0:Remove(L_318_arg0)
+				if L_318_arg0.Name ~= "ZZZZZZZZZ" and L_318_arg0.Name ~= "," and L_318_arg0 ~= '---S=()earch' then
+					if L_279_.List:FindFirstChild(L_318_arg0) then
+						L_279_.List[L_318_arg0]:Destroy()
+					else
+						L_280_func('Option not found.')
+					end
+				else
+					L_280_func("No")
+				end
+				if L_279_.Selected.Text == L_318_arg0 then
+					L_279_.Selected.Text = ''
+				end
+			end
+
+			return L_278_arg0
+		end
+
+		-- Keybind
+		function L_234_:CreateKeybind(L_319_arg0)
+			local L_320_ = false
+			local L_321_ = L_17_.Template.Keybind:Clone()
+			L_321_.Name = L_319_arg0.Name
+			L_321_.Title.Text = L_319_arg0.Name
+			L_321_.Visible = true
+			L_321_.Parent = L_233_
+
+			L_321_.BackgroundTransparency = 1
+			L_321_.UIStroke.Transparency = 1
+			L_321_.Title.TextTransparency = 1
+
+			L_321_.KeybindFrame.BackgroundColor3 = L_32_.InputBackground
+			L_321_.KeybindFrame.UIStroke.Color = L_32_.InputStroke
+
+			L_8_:Create(L_321_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_321_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_321_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+			
+			if L_319_arg0.Info then
+				L_321_.Description.Text = L_319_arg0.Info
+				local L_322_ = false
+				local L_323_ = false
+				local L_324_ = L_321_.Size.Y.Offset
+
+				L_321_.MouseEnter:Connect(function(L_325_arg0, L_326_arg1)
+					L_322_ = true
+					wait(0.2)
+					if L_322_ then
+						L_323_ = true
+						L_321_.Description.Visible = true
+						game:GetService('TweenService'):Create(L_321_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_324_ + L_321_.Description.Size.Y.Offset + 15)
+						}):Play()
+					end
+				end)
+				L_321_.MouseLeave:Connect(function(L_327_arg0, L_328_arg1)
+					if L_322_ then
+						L_322_ = false
+					end
+					if L_323_ then
+						L_323_ = false
+						game:GetService('TweenService'):Create(L_321_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_324_)
+						}):Play()
+						delay(.4, function()
+							if not L_323_ then
+								L_321_.Description.Visible = false
+							end
+						end)
+					end
+				end)
+			end
+			
+			L_321_.KeybindFrame.KeybindBox.Text = L_319_arg0.CurrentKeybind
+			L_321_.KeybindFrame.Size = UDim2.new(0, L_321_.KeybindFrame.KeybindBox.TextBounds.X + 24, 0, 30)
+
+			L_321_.KeybindFrame.KeybindBox.Focused:Connect(function()
+				L_320_ = true
+				L_321_.KeybindFrame.KeybindBox.Text = ""
+			end)
+			L_321_.KeybindFrame.KeybindBox.FocusLost:Connect(function()
+				L_320_ = false
+				if L_321_.KeybindFrame.KeybindBox.Text == nil or "" then
+					L_321_.KeybindFrame.KeybindBox.Text = L_319_arg0.CurrentKeybind
+					L_37_func()
+				end
+			end)
+
+			L_321_.MouseEnter:Connect(function()
+				L_8_:Create(L_321_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackgroundHover
+				}):Play()
+			end)
+
+			L_321_.MouseLeave:Connect(function()
+				L_8_:Create(L_321_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+			end)
+
+			L_7_.InputBegan:Connect(function(L_329_arg0, L_330_arg1)
+
+				if L_320_ then
+					if L_329_arg0.KeyCode ~= Enum.KeyCode.Unknown and L_329_arg0.KeyCode ~= Enum.KeyCode.RightShift then
+						local L_331_ = string.split(tostring(L_329_arg0.KeyCode), ".")
+						local L_332_ = L_331_[3]
+						L_321_.KeybindFrame.KeybindBox.Text = tostring(L_332_)
+						L_319_arg0.CurrentKeybind = tostring(L_332_)
+						L_321_.KeybindFrame.KeybindBox:ReleaseFocus()
+						L_37_func()
+					end
+				elseif L_319_arg0.CurrentKeybind ~= nil and (L_329_arg0.KeyCode == Enum.KeyCode[L_319_arg0.CurrentKeybind] and not L_330_arg1) then  --Test
+					local L_333_ = true
+					local L_334_
+					L_334_ = L_329_arg0.Changed:Connect(function(L_335_arg0)
+						if L_335_arg0 == "UserInputState" then
+							L_334_:Disconnect()
+							L_333_ = false
+						end
+					end)
+
+					if not L_319_arg0.HoldToInteract then
+						local L_336_, L_337_ = pcall(L_319_arg0.Callback)
+						if not L_336_ then
+							L_8_:Create(L_321_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+								BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+							}):Play()
+							L_8_:Create(L_321_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+								Transparency = 1
+							}):Play()
+							L_321_.Title.Text = "Callback Error"
+							print("Rayfield | " .. L_319_arg0.Name .. " Callback Error " .. tostring(L_337_))
+							wait(0.5)
+							L_321_.Title.Text = L_319_arg0.Name
+							L_8_:Create(L_321_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+								BackgroundColor3 = L_32_.ElementBackground
+							}):Play()
+							L_8_:Create(L_321_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+								Transparency = 0
+							}):Play()
+						end
+					else
+						wait(0.25)
+						if L_333_ then
+							local L_338_;
+							L_338_ = L_10_.Stepped:Connect(function()
+								if not L_333_ then
+									L_319_arg0.Callback(false) -- maybe pcall this
+									L_338_:Disconnect()
+								else
+									L_319_arg0.Callback(true) -- maybe pcall this
+								end
+							end)	
+						end
+					end
+				end
+			end)
+
+			L_321_.KeybindFrame.KeybindBox:GetPropertyChangedSignal("Text"):Connect(function()
+				L_8_:Create(L_321_.KeybindFrame, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+					Size = UDim2.new(0, L_321_.KeybindFrame.KeybindBox.TextBounds.X + 24, 0, 30)
+				}):Play()
+			end)
+
+			function L_319_arg0:Set(L_339_arg0)
+				L_321_.KeybindFrame.KeybindBox.Text = tostring(L_339_arg0)
+				L_319_arg0.CurrentKeybind = tostring(L_339_arg0)
+				L_321_.KeybindFrame.KeybindBox:ReleaseFocus()
+				L_37_func()
+			end
+			if L_214_arg0.ConfigurationSaving then
+				if L_214_arg0.ConfigurationSaving.Enabled and L_319_arg0.Flag then
+					L_6_.Flags[L_319_arg0.Flag] = L_319_arg0
+				end
+			end
+			return L_319_arg0
+		end
+
+		-- Toggle
+		function L_234_:CreateToggle(L_340_arg0)
+			local L_341_ = {}
+
+			local L_342_ = L_17_.Template.Toggle:Clone()
+			L_342_.Name = L_340_arg0.Name
+			L_342_.Title.Text = L_340_arg0.Name
+			L_342_.Visible = true
+			L_342_.Parent = L_233_
+
+			L_342_.BackgroundTransparency = 1
+			L_342_.UIStroke.Transparency = 1
+			L_342_.Title.TextTransparency = 1
+			L_342_.Switch.BackgroundColor3 = L_32_.ToggleBackground
+
+			if L_32_ ~= L_6_.Theme.Default then
+				L_342_.Switch.Shadow.Visible = false
+			end
+
+			L_8_:Create(L_342_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_342_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+			
+			if L_340_arg0.Info then
+				L_342_.Description.Text = L_340_arg0.Info
+				local L_343_ = false
+				local L_344_ = false
+				local L_345_ = L_342_.Size.Y.Offset
+
+				L_342_.MouseEnter:Connect(function(L_346_arg0, L_347_arg1)
+					L_343_ = true
+					wait(0.2)
+					if L_343_ then
+						L_344_ = true
+						L_342_.Description.Visible = true
+						game:GetService('TweenService'):Create(L_342_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_345_ + L_342_.Description.Size.Y.Offset + 15)
+						}):Play()
+					end
+				end)
+				L_342_.MouseLeave:Connect(function(L_348_arg0, L_349_arg1)
+					if L_343_ then
+						L_343_ = false
+					end
+					if L_344_ then
+						L_344_ = false
+						game:GetService('TweenService'):Create(L_342_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_345_)
+						}):Play()
+						delay(.4, function()
+							if not L_344_ then
+								L_342_.Description.Visible = false
+							end
+						end)
+					end
+				end)
+			end
+			
+			if not L_340_arg0.CurrentValue then
+				L_342_.Switch.Indicator.Position = UDim2.new(1, -40, 0.5, 0)
+				L_342_.Switch.Indicator.UIStroke.Color = L_32_.ToggleDisabledStroke
+				L_342_.Switch.Indicator.BackgroundColor3 = L_32_.ToggleDisabled
+				L_342_.Switch.UIStroke.Color = L_32_.ToggleDisabledOuterStroke
+			else
+				L_342_.Switch.Indicator.Position = UDim2.new(1, -20, 0.5, 0)
+				L_342_.Switch.Indicator.UIStroke.Color = L_32_.ToggleEnabledStroke
+				L_342_.Switch.Indicator.BackgroundColor3 = L_32_.ToggleEnabled
+				L_342_.Switch.UIStroke.Color = L_32_.ToggleEnabledOuterStroke
+			end
+
+			L_342_.MouseEnter:Connect(function()
+				L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackgroundHover
+				}):Play()
+			end)
+
+			L_342_.MouseLeave:Connect(function()
+				L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+			end)
+
+			L_342_.Interact.MouseButton1Click:Connect(function()
+				if L_340_arg0.CurrentValue then
+					L_340_arg0.CurrentValue = false
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackgroundHover
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.45, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Position = UDim2.new(1, -40, 0.5, 0)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 12, 0, 12)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = L_32_.ToggleDisabledStroke
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.8, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						BackgroundColor3 = L_32_.ToggleDisabled
+					}):Play()
+					L_8_:Create(L_342_.Switch.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = L_32_.ToggleDisabledOuterStroke
+					}):Play()
+					wait(0.05)
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 17, 0, 17)
+					}):Play()
+					wait(0.15)
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()	
+				else
+					L_340_arg0.CurrentValue = true
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackgroundHover
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Position = UDim2.new(1, -20, 0.5, 0)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 12, 0, 12)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = L_32_.ToggleEnabledStroke
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.8, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						BackgroundColor3 = L_32_.ToggleEnabled
+					}):Play()
+					L_8_:Create(L_342_.Switch.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = L_32_.ToggleEnabledOuterStroke
+					}):Play()
+					wait(0.05)
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.45, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 17, 0, 17)
+					}):Play()	
+					wait(0.15)
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()		
+				end
+
+				local L_350_, L_351_ = pcall(function()
+					L_340_arg0.Callback(L_340_arg0.CurrentValue)
+				end)
+				if not L_350_ then
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_342_.Title.Text = "Callback Error"
+					print("Rayfield | " .. L_340_arg0.Name .. " Callback Error " .. tostring(L_351_))
+					wait(0.5)
+					L_342_.Title.Text = L_340_arg0.Name
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+
+				L_37_func()
+			end)
+
+			function L_340_arg0:Set(L_352_arg0)
+				if L_352_arg0 then
+					L_340_arg0.CurrentValue = true
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackgroundHover
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Position = UDim2.new(1, -20, 0.5, 0)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 12, 0, 12)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = L_32_.ToggleEnabledStroke
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.8, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						BackgroundColor3 = L_32_.ToggleEnabled
+					}):Play()
+					L_8_:Create(L_342_.Switch.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = Color3.fromRGB(100, 100, 100)
+					}):Play()
+					wait(0.05)
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.45, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 17, 0, 17)
+					}):Play()	
+					wait(0.15)
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()	
+				else
+					L_340_arg0.CurrentValue = false
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackgroundHover
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.45, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Position = UDim2.new(1, -40, 0.5, 0)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 12, 0, 12)
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = L_32_.ToggleDisabledStroke
+					}):Play()
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.8, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						BackgroundColor3 = L_32_.ToggleDisabled
+					}):Play()
+					L_8_:Create(L_342_.Switch.UIStroke, TweenInfo.new(0.55, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+						Color = Color3.fromRGB(65, 65, 65)
+					}):Play()
+					wait(0.05)
+					L_8_:Create(L_342_.Switch.Indicator, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+						Size = UDim2.new(0, 17, 0, 17)
+					}):Play()
+					wait(0.15)
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()	
+				end
+				local L_353_, L_354_ = pcall(function()
+					L_340_arg0.Callback(L_340_arg0.CurrentValue)
+				end)
+				if not L_353_ then
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_342_.Title.Text = "Callback Error"
+					print("Rayfield | " .. L_340_arg0.Name .. " Callback Error " .. tostring(L_354_))
+					wait(0.5)
+					L_342_.Title.Text = L_340_arg0.Name
+					L_8_:Create(L_342_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_342_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+				L_37_func()
+			end
+
+			if L_214_arg0.ConfigurationSaving then
+				if L_214_arg0.ConfigurationSaving.Enabled and L_340_arg0.Flag then
+					L_6_.Flags[L_340_arg0.Flag] = L_340_arg0
+				end
+			end
+
+			return L_340_arg0
+		end
+		
+		 --Colorpicker
+		function L_234_:CreateColorpicker(L_355_arg0)
+			local L_356_ = L_17_.Template.Color:Clone()
+			L_356_.Name = L_355_arg0.Name
+			L_356_.Title.Text = L_355_arg0.Name
+			L_356_.Visible = true
+			L_356_.Parent = L_233_
+			local L_357_ = L_355_arg0.CurrentColor
+			local L_358_ = L_356_.Main
+			local L_359_, L_360_, L_361_ = L_355_arg0.CurrentColor:ToHSV()
+			
+			local function L_362_func(L_369_arg0, L_370_arg1, L_371_arg2)
+				local L_372_ = L_371_arg2
+				local L_373_ = L_371_arg2 + L_370_arg1
+
+				if L_369_arg0 + L_372_ < L_372_ + 3 then
+					L_369_arg0 = L_372_ + 3
+				elseif L_369_arg0 + L_372_ > L_373_ - 3 then
+					L_369_arg0 = L_373_ - 3
+				end
+				
+				L_369_arg0 = L_371_arg2 + L_369_arg0
+				return L_369_arg0, - (L_372_ + L_370_arg1 * 0.5 - L_369_arg0)
+			end
+			
+			local L_363_, L_364_ = L_362_func(L_358_.Hue.Selector.AbsoluteSize.X * L_359_, L_358_.Hue.Selector.AbsoluteSize.X, L_358_.Hue.Selector.AbsolutePosition.X)
+			local L_365_, L_366_ = L_362_func(L_358_.Hue.Selector.AbsoluteSize.X * L_360_, L_358_.Hue.Selector.AbsoluteSize.X, L_358_.Hue.Selector.AbsolutePosition.X)
+			local L_367_, L_368_ = L_362_func(L_358_.Hue.Selector.AbsoluteSize.X * L_361_, L_358_.Hue.Selector.AbsoluteSize.X, L_358_.Hue.Selector.AbsolutePosition.X)
+
+			L_358_.Hue.Selector.Position = UDim2.new(0.5, - (L_358_.Hue.Selector.AbsolutePosition.X + L_358_.Hue.Selector.AbsoluteSize.X * 0.5 - L_363_), 0.5, 0)
+			L_358_.Value.Selector.Position = UDim2.new(0.5, L_366_, 0.5, 0)
+			L_358_.Saturation.Selector.Position = UDim2.new(0.5, L_368_, 0.5, 0)
+
+			L_358_.Hue.Show.BackgroundColor3 = Color3.fromHSV(L_359_, 1, 1)
+			L_358_.Value.BackgroundColor3 = Color3.fromHSV(L_359_, 1, 1)
+			L_358_.Value.Show.BackgroundColor3 = Color3.fromHSV(L_359_, L_360_, 1)
+			L_358_.Saturation.BackgroundColor3 = Color3.fromHSV(L_359_, 1, 1)
+			L_358_.Saturation.Show.BackgroundColor3 = Color3.fromHSV(L_359_, 1, L_361_)
+
+			L_358_.Hue.InputBegan:Connect(function(L_374_arg0)
+				if L_374_arg0.UserInputType == Enum.UserInputType.MouseButton1 then
+					local L_375_ = L_358_.Hue.AbsolutePosition.X
+					local L_376_ = L_375_ + L_358_.Hue.AbsoluteSize.X
+					local L_377_ = L_358_.Hue.AbsoluteSize.X
+					local L_378_ = L_358_.Hue.Selector.AbsoluteSize.X
+
+					local L_379_;
+					L_379_ = L_10_.RenderStepped:Connect(function()
+						if L_7_:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) then
+							local L_380_ = L_7_:GetMouseLocation().X
+
+							if L_380_ < L_375_ + L_378_ * 0.5 then
+								L_380_ = L_375_ + L_378_ * 0.5
+							elseif L_380_ > L_376_ - L_378_ * 0.5 then
+								L_380_ = L_376_ - L_378_ * 0.5
+							end
+
+							L_359_ = (L_380_ - L_375_) / L_377_
+							L_358_.Hue.Selector.Position = UDim2.new(0.5, - (L_375_ + L_377_ * 0.5 - L_380_), 0.5, 0)
+							L_358_.Hue.Show.BackgroundColor3 = Color3.fromHSV(L_359_, 1, 1)
+							L_358_.Saturation.BackgroundColor3 = L_358_.Hue.Show.BackgroundColor3
+							L_358_.Value.BackgroundColor3 = L_358_.Hue.Show.BackgroundColor3
+						else
+							L_379_:Disconnect()
+						end
+					end)
+				end
+			end)
+
+			L_358_.Saturation.InputBegan:Connect(function(L_381_arg0)
+				if L_381_arg0.UserInputType == Enum.UserInputType.MouseButton1 then
+					local L_382_ = L_358_.Saturation.AbsolutePosition.X
+					local L_383_ = L_382_ + L_358_.Saturation.AbsoluteSize.X
+					local L_384_ = L_358_.Saturation.AbsoluteSize.X
+					local L_385_ = L_358_.Saturation.Selector.AbsoluteSize.X
+
+					local L_386_;
+					L_386_ = L_10_.RenderStepped:Connect(function()
+						if L_7_:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) then
+							local L_387_ = L_7_:GetMouseLocation().X
+
+							if L_387_ < L_382_ + L_385_ * 0.5 then
+								L_387_ = L_382_ + L_385_ * 0.5
+							elseif L_387_ > L_383_ - L_385_ * 0.5 then
+								L_387_ = L_383_ - L_385_ * 0.5
+							end
+
+							L_361_ = (L_387_ - L_382_) / L_384_
+							L_358_.Saturation.Selector.Position = UDim2.new(0.5, - (L_382_ + L_384_ * 0.5 - L_387_), 0.5, 0)
+							L_358_.Saturation.Show.BackgroundColor3 = Color3.fromHSV(L_359_, 1, L_361_)
+						else
+							L_386_:Disconnect()
+						end
+					end)
+				end
+			end)
+		end
+
+		 --Slider
+		function L_234_:CreateSlider(L_388_arg0)
+			local L_389_ = false
+			local L_390_ = L_17_.Template.Slider:Clone()
+			L_390_.Name = L_388_arg0.Name
+			L_390_.Title.Text = L_388_arg0.Name
+			L_390_.Visible = true
+			L_390_.Parent = L_233_
+
+			L_390_.BackgroundTransparency = 1
+			L_390_.UIStroke.Transparency = 1
+			L_390_.Title.TextTransparency = 1
+
+			if L_32_ ~= L_6_.Theme.Default then
+				L_390_.Main.Shadow.Visible = false
+			end
+			if L_388_arg0.Info then
+				L_390_.Description.Text = L_388_arg0.Info
+				local L_391_ = false
+				local L_392_ = false
+				local L_393_ = L_390_.Size.Y.Offset
+
+				L_390_.MouseEnter:Connect(function(L_394_arg0, L_395_arg1)
+					L_391_ = true
+					wait(0.2)
+					if L_391_ then
+						L_392_ = true
+						L_390_.Description.Visible = true
+						game:GetService('TweenService'):Create(L_390_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_393_ + L_390_.Description.Size.Y.Offset + 15)
+						}):Play()
+					end
+				end)
+				L_390_.MouseLeave:Connect(function(L_396_arg0, L_397_arg1)
+					if L_391_ then
+						L_391_ = false
+					end
+					if L_392_ then
+						L_392_ = false
+						game:GetService('TweenService'):Create(L_390_, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+							Size = UDim2.new(1, -10, 0, L_393_)
+						}):Play()
+						delay(.4, function()
+							if not L_392_ then
+								L_390_.Description.Visible = false
+							end
+						end)
+					end
+				end)
+			end
+			L_390_.Main.BackgroundColor3 = L_32_.SliderBackground
+			L_390_.Main.UIStroke.Color = L_32_.SliderStroke
+			L_390_.Main.Progress.BackgroundColor3 = L_32_.SliderProgress
+
+			L_8_:Create(L_390_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				BackgroundTransparency = 0
+			}):Play()
+			L_8_:Create(L_390_.UIStroke, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				Transparency = 0
+			}):Play()
+			L_8_:Create(L_390_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				TextTransparency = 0
+			}):Play()	
+
+			L_390_.Main.Progress.Size = UDim2.new(0, L_390_.Main.AbsoluteSize.X * ((L_388_arg0.CurrentValue + L_388_arg0.Range[1]) / (L_388_arg0.Range[2] - L_388_arg0.Range[1])) > 5 and L_390_.Main.AbsoluteSize.X * (L_388_arg0.CurrentValue / (L_388_arg0.Range[2] - L_388_arg0.Range[1])) or 5, 1, 0)
+
+			if not L_388_arg0.Suffix then
+				L_390_.Main.Information.Text = tostring(L_388_arg0.CurrentValue)
+			else
+				L_390_.Main.Information.Text = tostring(L_388_arg0.CurrentValue) .. " " .. L_388_arg0.Suffix
+			end
+
+
+			L_390_.MouseEnter:Connect(function()
+				L_8_:Create(L_390_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackgroundHover
+				}):Play()
+			end)
+
+			L_390_.MouseLeave:Connect(function()
+				L_8_:Create(L_390_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+					BackgroundColor3 = L_32_.ElementBackground
+				}):Play()
+			end)
+
+			L_390_.Main.Interact.InputBegan:Connect(function(L_398_arg0)
+				if L_398_arg0.UserInputType == Enum.UserInputType.MouseButton1 then 
+					L_389_ = true 
+				end 
+			end)
+			L_390_.Main.Interact.InputEnded:Connect(function(L_399_arg0) 
+				if L_399_arg0.UserInputType == Enum.UserInputType.MouseButton1 then 
+					L_389_ = false 
+				end 
+			end)
+
+			L_390_.Main.Interact.MouseButton1Down:Connect(function(L_400_arg0)
+				local L_401_ = L_390_.Main.Progress.AbsolutePosition.X + L_390_.Main.Progress.AbsoluteSize.X
+				local L_402_ = L_401_
+				local L_403_ = L_400_arg0
+				local L_404_;
+				L_404_ = L_10_.Stepped:Connect(function()
+					if L_389_ then
+						L_403_ = L_7_:GetMouseLocation().X
+						L_401_ = L_401_ + 0.025 * (L_403_ - L_402_)
+
+						if L_403_ < L_390_.Main.AbsolutePosition.X then
+							L_403_ = L_390_.Main.AbsolutePosition.X
+						elseif L_403_ > L_390_.Main.AbsolutePosition.X + L_390_.Main.AbsoluteSize.X then
+							L_403_ = L_390_.Main.AbsolutePosition.X + L_390_.Main.AbsoluteSize.X
+						end
+
+						if L_401_ < L_390_.Main.AbsolutePosition.X + 5 then
+							L_401_ = L_390_.Main.AbsolutePosition.X + 5
+						elseif L_401_ > L_390_.Main.AbsolutePosition.X + L_390_.Main.AbsoluteSize.X then
+							L_401_ = L_390_.Main.AbsolutePosition.X + L_390_.Main.AbsoluteSize.X
+						end
+
+						if L_401_ <= L_403_ and (L_403_ - L_402_) < 0 then
+							L_402_ = L_403_
+						elseif L_401_ >= L_403_ and (L_403_ - L_402_) > 0 then
+							L_402_ = L_403_
+						end
+						L_8_:Create(L_390_.Main.Progress, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Size = UDim2.new(0, L_401_ - L_390_.Main.AbsolutePosition.X, 1, 0)
+						}):Play()
+						local L_405_ = L_388_arg0.Range[1] + (L_403_ - L_390_.Main.AbsolutePosition.X) / L_390_.Main.AbsoluteSize.X * (L_388_arg0.Range[2] - L_388_arg0.Range[1])
+
+						L_405_ = math.floor(L_405_ / L_388_arg0.Increment + 0.5) * (L_388_arg0.Increment * 10000000) / 10000000
+						if not L_388_arg0.Suffix then
+							L_390_.Main.Information.Text = tostring(L_405_)
+						else
+							L_390_.Main.Information.Text = tostring(L_405_) .. " " .. L_388_arg0.Suffix
+						end
+
+						if L_388_arg0.CurrentValue ~= L_405_ then
+							local L_406_, L_407_ = pcall(function()
+								L_388_arg0.Callback(L_405_)
+							end)
+							if not L_406_ then
+								L_8_:Create(L_390_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+									BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+								}):Play()
+								L_8_:Create(L_390_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+									Transparency = 1
+								}):Play()
+								L_390_.Title.Text = "Callback Error"
+								print("Rayfield | " .. L_388_arg0.Name .. " Callback Error " .. tostring(L_407_))
+								wait(0.5)
+								L_390_.Title.Text = L_388_arg0.Name
+								L_8_:Create(L_390_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+									BackgroundColor3 = L_32_.ElementBackground
+								}):Play()
+								L_8_:Create(L_390_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+									Transparency = 0
+								}):Play()
+							end
+
+							L_388_arg0.CurrentValue = L_405_
+							L_37_func()
+						end
+					else
+						L_8_:Create(L_390_.Main.Progress, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+							Size = UDim2.new(0, L_403_ - L_390_.Main.AbsolutePosition.X > 5 and L_403_ - L_390_.Main.AbsolutePosition.X or 5, 1, 0)
+						}):Play()
+						L_404_:Disconnect()
+					end
+				end)
+			end)
+
+			function L_388_arg0:Set(L_408_arg0)
+				L_8_:Create(L_390_.Main.Progress, TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+					Size = UDim2.new(0, L_390_.Main.AbsoluteSize.X * ((L_408_arg0 + L_388_arg0.Range[1]) / (L_388_arg0.Range[2] - L_388_arg0.Range[1])) > 5 and L_390_.Main.AbsoluteSize.X * (L_408_arg0 / (L_388_arg0.Range[2] - L_388_arg0.Range[1])) or 5, 1, 0)
+				}):Play()
+				L_390_.Main.Information.Text = tostring(L_408_arg0) .. " " .. L_388_arg0.Suffix
+				local L_409_, L_410_ = pcall(function()
+					L_388_arg0.Callback(L_408_arg0)
+				end)
+				if not L_409_ then
+					L_8_:Create(L_390_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = Color3.fromRGB(85, 0, 0)
+					}):Play()
+					L_8_:Create(L_390_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 1
+					}):Play()
+					L_390_.Title.Text = "Callback Error"
+					print("Rayfield | " .. L_388_arg0.Name .. " Callback Error " .. tostring(L_410_))
+					wait(0.5)
+					L_390_.Title.Text = L_388_arg0.Name
+					L_8_:Create(L_390_, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						BackgroundColor3 = L_32_.ElementBackground
+					}):Play()
+					L_8_:Create(L_390_.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+				end
+				L_388_arg0.CurrentValue = L_408_arg0
+				L_37_func()
+			end
+			if L_214_arg0.ConfigurationSaving then
+				if L_214_arg0.ConfigurationSaving.Enabled and L_388_arg0.Flag then
+					L_6_.Flags[L_388_arg0.Flag] = L_388_arg0
+				end
+			end
+			return L_388_arg0
+		end
+
+
+		return L_234_
+	end
+
+	L_17_.Visible = true
+
+	wait(1.2)
+	L_8_:Create(L_18_.Title, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	L_8_:Create(L_18_.Subtitle, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	L_8_:Create(L_18_.Version, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {
+		TextTransparency = 1
+	}):Play()
+	wait(0.2)
+	L_8_:Create(L_15_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(0, 500, 0, 475)
+	}):Play()
+	L_8_:Create(L_15_.Shadow.Image, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.4
+	}):Play()
+
+	L_16_.BackgroundTransparency = 1
+	L_16_.Divider.Size = UDim2.new(0, 0, 0, 1)
+	L_16_.CornerRepair.BackgroundTransparency = 1
+	L_16_.Title.TextTransparency = 1
+	L_16_.Theme.ImageTransparency = 1
+	L_16_.ChangeSize.ImageTransparency = 1
+	L_16_.Hide.ImageTransparency = 1
+
+	wait(0.8)
+	L_16_.Visible = true
+	L_8_:Create(L_16_, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	L_8_:Create(L_16_.CornerRepair, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		BackgroundTransparency = 0
+	}):Play()
+	wait(0.1)
+	L_8_:Create(L_16_.Divider, TweenInfo.new(1, Enum.EasingStyle.Quint), {
+		Size = UDim2.new(1, 0, 0, 1)
+	}):Play()
+	wait(0.1)
+	L_8_:Create(L_16_.Title, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		TextTransparency = 0
+	}):Play()
+	wait(0.1)
+	L_8_:Create(L_16_.Theme, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.8
+	}):Play()
+	wait(0.1)
+	L_8_:Create(L_16_.ChangeSize, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.8
+	}):Play()
+	wait(0.1)
+	L_8_:Create(L_16_.Hide, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+		ImageTransparency = 0.8
+	}):Play()
+	wait(0.3)
+	function L_217_:Prompt(L_411_arg0)
+		local L_412_ = L_22_.Prompt
+		L_22_.Visible = true
+		L_22_.BackgroundTransparency = 1
+		L_412_.BackgroundTransparency = 1
+		L_412_.UIStroke.Transparency = 1
+		L_412_.Content.TextTransparency = 1
+		L_412_.Title.TextTransparency = 1
+		L_412_.Sub.TextTransparency = 1
+		L_412_.Size = UDim2.new(0, 340, 0, 140)
+		L_412_.Buttons.Template.Visible = false
+		L_412_.Buttons.Template.TextLabel.TextTransparency = 1
+		L_412_.Buttons.Template.UIStroke.Transparency = 1
+		--PromptUI.Buttons.Middle.Visible = false
+		--PromptUI.Buttons.Middle.TextLabel.TextTransparency = 1
+		--PromptUI.Buttons.Middle.UIStroke.Transparency = 1
+		
+		L_412_.Content.Text = L_411_arg0.Content
+		L_412_.Sub.Text = L_411_arg0.SubTitle or ''
+		
+		if L_411_arg0.Actions then
+			for L_413_forvar0, L_414_forvar1 in pairs(L_411_arg0.Actions) do
+				print(L_414_forvar1)
+				local L_415_ = L_412_.Buttons.Template:Clone()
+				L_415_.TextLabel.Text = L_414_forvar1.Name
+				L_415_.Interact.MouseButton1Up:Connect(function()
+					if not L_29_ then
+						local L_416_, L_417_ = pcall(L_414_forvar1.Callback)
+						L_29_ = true
+						if not L_416_ then
+							ClosePrompt()
+							print("Rayfield | " .. L_414_forvar1.Name .. " Callback Error " .. tostring(L_417_))
+						else
+							ClosePrompt()
+						end
+					end
+				end)
+				L_415_.Name = L_413_forvar0
+				L_415_.Parent = L_412_.Buttons -- saving memory
+				L_415_.Size = UDim2.fromOffset(L_415_.TextLabel.TextBounds.X + 24, 30)
+			end
+		end
+		
+		L_8_:Create(L_22_, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+			BackgroundTransparency = .5
+		}):Play()
+		wait(.2)
+		L_8_:Create(L_412_, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+			BackgroundTransparency = 0,
+			Size = UDim2.new(0, 350, 0, 150)
+		}):Play()
+		wait(0.2)
+		L_8_:Create(L_412_.UIStroke, TweenInfo.new(0.4, Enum.EasingStyle.Quint), {
+			Transparency = 0
+		}):Play()
+		L_8_:Create(L_412_.Title, TweenInfo.new(0.45, Enum.EasingStyle.Quint), {
+			TextTransparency = 0
+		}):Play()
+		L_8_:Create(L_412_.Content, TweenInfo.new(0.45, Enum.EasingStyle.Quint), {
+			TextTransparency = 0
+		}):Play()
+		L_8_:Create(L_412_.Sub, TweenInfo.new(0.45, Enum.EasingStyle.Quint), {
+			TextTransparency = 0
+		}):Play()
+		wait(1)
+		if L_411_arg0.Actions then
+			for L_418_forvar0, L_419_forvar1 in pairs(L_412_.Buttons:GetChildren()) do
+				if L_419_forvar1.Name ~= 'Template' and L_419_forvar1.Name ~= 'Middle' and L_419_forvar1:IsA('Frame') then
+					L_419_forvar1.Visible = true
+					L_8_:Create(L_419_forvar1.UIStroke, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+						Transparency = 0
+					}):Play()
+					L_8_:Create(L_419_forvar1.TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+						TextTransparency = 0
+					}):Play()
+					wait(.8)
+				end
+			end
+		else
+			--TweenService:Create(PromptUI.Buttons.Middle.UIStroke,TweenInfo.new(0.3, Enum.EasingStyle.Quint), {Transparency = 0}):Play()
+			--TweenService:Create(PromptUI.Buttons.Middle.TextLabel,TweenInfo.new(0.3, Enum.EasingStyle.Quint), {TextTransparency = 0}):Play()
+		end
+	end
+	
+	return L_217_
+end
+
+
+function L_6_:Destroy()
+	L_13_:Destroy()
+end
+
+L_16_.ChangeSize.MouseButton1Click:Connect(function()
+	if L_28_ then
+		return
+	end
+	if L_26_ then
+		L_26_ = false
+		Maximise()
+	else
+		if not L_30_ then
+			L_30_ = true
+			spawn(CloseSearch)
+		end
+		L_26_ = true
+		Minimise()
+	end
+end)
+L_16_.Search.MouseButton1Click:Connect(function()
+	if L_28_ or L_26_ then
+		return
+	end
+	if L_30_ then
+		OpenSearch()
+		L_30_ = false
+	else
+		L_30_ = true
+		CloseSearch()
+	end
+end)
+L_16_.Hide.MouseButton1Click:Connect(function()
+	if L_28_ then
+		return
+	end
+	if L_27_ then
+		L_27_ = false
+		L_26_ = false
+		Unhide()
+	else
+		if not L_30_ then
+			L_30_ = true
+			spawn(CloseSearch)
+		end
+		L_27_ = true
+		Hide()
+	end
+end)
+
+L_7_.InputBegan:Connect(function(L_420_arg0, L_421_arg1)
+	if (L_420_arg0.KeyCode == Enum.KeyCode.RightShift and not L_421_arg1) then
+		if L_28_ then
+			return
+		end
+		if L_27_ then
+			L_27_ = false
+			Unhide()
+		else
+			if not L_30_ then
+				spawn(CloseSearch)
+			end
+			L_27_ = true
+			Hide()
+		end
+	end
+end)
+
+for L_422_forvar0, L_423_forvar1 in ipairs(L_16_:GetChildren()) do
+	if L_423_forvar1.ClassName == "ImageButton" then
+		L_423_forvar1.MouseEnter:Connect(function()
+			L_8_:Create(L_423_forvar1, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0
+			}):Play()
+		end)
+
+		L_423_forvar1.MouseLeave:Connect(function()
+			L_8_:Create(L_423_forvar1, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.8
+			}):Play()
+		end)
+
+		L_423_forvar1.MouseButton1Click:Connect(function()
+			L_8_:Create(L_423_forvar1, TweenInfo.new(0.7, Enum.EasingStyle.Quint), {
+				ImageTransparency = 0.8
+			}):Play()
+		end)
+	end
+end
+
+
+function L_6_:LoadConfiguration()
+	if L_25_ then
+		pcall(function()
+			if isfile(L_4_ .. "/" .. L_24_ .. L_5_) then
+				L_36_func(readfile(L_4_ .. "/" .. L_24_ .. L_5_))
+				L_6_:Notify({
+					Title = "Configuration Loaded",
+					Content = "The configuration file for this script has been loaded from a previous session"
+				})
+			end
+		end)
+	end
+end
+
+return L_6_
