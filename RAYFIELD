@@ -3461,7 +3461,7 @@ function L_6_:LoadConfiguration()
 			if isfile(L_4_ .. "/" .. L_24_ .. L_5_) then
 				L_36_func(readfile(L_4_ .. "/" .. L_24_ .. L_5_))
 				L_6_:Notify({
-					Title = "Configuration Loaded",
+					Title = "F2B Configuration Has Loaded",
 					Content = "The configuration file for this script has been loaded from a previous session"
 				})
 			end
