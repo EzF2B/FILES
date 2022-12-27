@@ -255,7 +255,7 @@ local function L_36_func(L_62_arg0)
 		else
 			L_6_:Notify({
 				Title = "Flag Error",
-				Content = "Rayfield was unable to find '" .. L_64_arg0 .. "'' in the current script"
+				Content = "F2B was unable to load correctly"
 			})
 		end
 	end)
