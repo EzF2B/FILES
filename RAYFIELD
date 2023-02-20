@@ -1,3 +1,4 @@
+print("OH")
 local L_1_ = "Beta 7R"
 local L_2_ = 6.5
 local L_3_ = "Rayfield"
